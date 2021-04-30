@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "187660592787",
+    "project_id": "asda-20ea5",
+    "storage_bucket": "asda-20ea5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:187660592787:android:68304b5767104241570f66",
+        "android_client_info": {
+          "package_name": "com.newblog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "187660592787-75oc7ofkj2hphq8gjb4jmf79mb91bg63.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAE8zKlCgdwz914MfVU6OeVf6QW89_zEm8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "187660592787-75oc7ofkj2hphq8gjb4jmf79mb91bg63.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

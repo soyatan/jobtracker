@@ -1,0 +1,14 @@
+com/newblog/MainApplication.java
+ com.newblog.MainApplication
+ com.newblog.MainApplication$1
+com/newblog/BuildConfig.java
+ com.newblog.BuildConfig
+com/newblog/MainActivity.java
+ com.newblog.MainActivity
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList
+com/newblog/ReactNativeFlipper.java
+ com.newblog.ReactNativeFlipper
+ com.newblog.ReactNativeFlipper$1
+ com.newblog.ReactNativeFlipper$2
+ com.newblog.ReactNativeFlipper$2$1

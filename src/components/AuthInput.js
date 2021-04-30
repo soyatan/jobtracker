@@ -1,0 +1,31 @@
+import React from 'react'
+import { View,Text} from 'react-native'
+import { TextInput } from 'react-native-paper';
+import styles from './styles'
+
+
+
+
+export default AuthInput=({label,secureTextEntry,onChangeText,labelValue,keyboardType})=>{
+  return(
+
+ <View style={styles.textinputcontainer}>
+   <TextInput
+ label={label}
+ mode='outlined'
+ style={styles.textinput}
+ placeholderTextColor='white'
+ selectionColor='red'
+ theme={{ colors: {underlineColor:'transparent',text:'#BB86FC',disabled:'white',placeholder:'#BB86FC'}}}
+ onChangeText={onChangeText}
+ labelValue={labelValue}
+ secureTextEntry={secureTextEntry}
+ keyboardType={keyboardType}
+
+ 
+ 
+ 
+ 
+/></View>
+  )
+}
