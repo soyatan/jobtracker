@@ -5,7 +5,7 @@ import createFBAuth from "@react-native-firebase/auth";
 import { jobsReducer,fetchJobsRequest, FETCH_JOBS, setJobs } from '../jobsReducer';
 
 const auth=createFBAuth();
-const baseURL='http://6f7d04b15e50.ngrok.io'
+const baseURL='http://4be0d1f1235a.ngrok.io'
 
 
 export function* fetchJobs (){

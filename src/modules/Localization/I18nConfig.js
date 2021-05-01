@@ -1,9 +1,8 @@
 import I18n from 'i18n-js';
 
-import english from './Translations/English'; // al bunu
-import turkish from './Translations/Turkish'; //al bunu
 
 import { Locales } from './LocalizationConstants';
+import { english, turkish } from './Translations/TextNames';
 
 
 I18n.defaultLocale = Locales.english;

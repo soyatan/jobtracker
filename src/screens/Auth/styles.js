@@ -1,11 +1,15 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 
-export default styles=StyleSheet.create({
+import { colorNames as cn, useThemedColors }  from '../../modules/Theming'
+
+
+
+export default styles=(Colors)=>StyleSheet.create({
 
     container:{
         flex:1,
-        backgroundColor:'#121212',
+        backgroundColor: Colors[cn.auth.background],
         
         flexGrow:1,
         padding:5,
@@ -29,6 +33,7 @@ export default styles=StyleSheet.create({
     }
 
 })
+
 
 
 

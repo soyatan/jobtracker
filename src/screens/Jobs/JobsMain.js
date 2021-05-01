@@ -7,9 +7,10 @@ import { userLogoutRequest, userSelector } from '../../redux/userReducer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { create } from 'react-test-renderer';
 import JobsIndex from './JobsIndex';
+import { colorNames, ThemeModes, useDispatchChangeTheme, useTheme, useThemedColors } from '../../modules/Theming';
 
 export default JobsMain=()=>{
-  
+  const colors=useThemedColors();  
   const Jobs=createStackNavigator();
         
 
@@ -26,6 +27,7 @@ export default JobsMain=()=>{
           color:'white',
           alignSelf:'center',
         },
+        headerShown:false,
       }}
     >
         <Jobs.Screen name="Jobs Index"  component={JobsIndex} />

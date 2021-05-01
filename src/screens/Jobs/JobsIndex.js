@@ -4,14 +4,17 @@ import auth from '@react-native-firebase/auth';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { userLogoutRequest, userSelector } from '../../redux/userReducer';
-import styles from './styles';
+import getstyles from './styles';
 
 import { jobsSelector, fetchJobsRequest } from '../../redux/jobsReducer';
 import BlogPost from '../../components/BlogPost';
 import AddJobButton from '../../components/AddJobButton';
+import { useThemedColors, useThemedStyles } from '../../modules/Theming';
+
 
 
 export default JobsIndex=()=>{
+  const styles=useThemedStyles(getstyles)
   useEffect(() => {
     dispatch(fetchJobsRequest())
   }, [])
@@ -22,7 +25,9 @@ export default JobsIndex=()=>{
   const jobs=useSelector(jobsSelector);
   console.log(jobs)
 
-
+  const logoutrequest=()=>{
+    console.log('loggingout');
+    dispatch(userLogoutRequest())}
  
   return(
 
@@ -30,6 +35,8 @@ export default JobsIndex=()=>{
     <View style={styles.container}>
        <View style={styles.blogcontainer}>
       <FlatList 
+      ListHeaderComponent={()=><Text>1231312</Text>}
+      ListFooterComponent={()=><Text>1231312</Text>}
       data={jobs}
       renderItem={item=>
         <BlogPost data={item}/>
@@ -37,6 +44,7 @@ export default JobsIndex=()=>{
       />
       </View>
       <AddJobButton name={'plus'} color={'white'}/>
+      <AddJobButton onPress={()=>{logoutrequest()}} name={'sign-out'} color={'white'}/>
       
     </View>
   )

@@ -42,7 +42,8 @@ export function useThemedOption(...options) {
     }
 }
 
-export function useDispatchChangeTheme() {
+export function useDispatchChangeTheme(theme) {
+    console.log(theme)
     const dispatch = useDispatch();
     return key => dispatch(ThemeActions.changeTheme({themeMode: key}));
 }

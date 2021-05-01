@@ -1,10 +1,12 @@
 import React from 'react'
 import { View,Text,TextInput, TouchableOpacity} from 'react-native'
-import styles from './styles'
+import getstyles from './styles'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import { useThemedStyles } from '../modules/Theming'
 
 
 export default SocialButton=({name})=>{
+  const styles= useThemedStyles(getstyles)
   let color=null;
   let bgcolor=null;
   switch (name) {

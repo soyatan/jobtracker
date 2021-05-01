@@ -1,15 +1,17 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 
-export default styles=StyleSheet.create({
+import { colorNames as cn, useThemedColors }  from '../modules/Theming'
+
+export default styles=(Colors)=>StyleSheet.create({
     textinputcontainer:{
         paddingTop:10,
     },
     textinput:{
 
-      borderColor:'#BB86FC',
-      backgroundColor:'#121212',
-      color:'white'
+      borderColor:Colors[cn.auth.inputBackground],
+      backgroundColor:Colors[cn.auth.inputBackground],
+      
       
     },
     text:{
@@ -31,7 +33,7 @@ export default styles=StyleSheet.create({
         
     },
     blog:{
-        
+        backgroundColor:Colors[cn.jobs.background],
         margin:5,
         alignItems:'center',
         justifyContent:'center',
@@ -53,12 +55,14 @@ export default styles=StyleSheet.create({
 
     blogtext:{
         textAlignVertical:'center',
+        color:Colors[cn.jobs.jobtextcolor],
         
     },
     blogtitletext:{
         textAlignVertical:'center',
         fontWeight:'bold',
         fontSize:20,
+        color:Colors[cn.jobs.jobtextcolor],
     },
     button:{
 
@@ -82,9 +86,14 @@ export default styles=StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
     },
+    portraiticon:{
+
+        color:Colors[cn.jobs.jobtextcolor],
+    },
     socialbutton:{
 
         //backgroundColor:'#BB86FC',
+        borderWidth:0.5,
         borderRadius:10,
         margin:5,
         height:50,

@@ -25,7 +25,7 @@ export function useLocale() {
 }
 //neden key?
 
-export function useDispatchChangeLocale() {
+export function useDispatchChangeLocale() { 
     const dispatch = useDispatch();
     return key => dispatch(LocalizationActions.changeLocale({locale: key}));
 }
