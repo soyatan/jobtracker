@@ -4,15 +4,15 @@ import createSagaMiddleWare from 'redux-saga';
 
 import root from './saga/root';
 import REDUX_PERSIST from './ReduxPersistConfig';
-
+import {persistStore,persistReducer} from 'redux-persist'
 
 
 import { userReducer } from './userReducer';
 import { jobsReducer } from './jobsReducer';
 import { LocalizationReducer } from './localizationReducer';
 import { ThemeReducer } from './themeReducer';
-import {persistStore,persistReducer} from 'redux-persist'
-
+import { employeesReducer } from './employeesReducer';
+import { companiesReducer } from './companyReducer';
 
 
 
@@ -22,7 +22,9 @@ const combinedReducer=combineReducers({
     userState:userReducer,
     jobsState:jobsReducer,
     localization:LocalizationReducer,
-    theme:ThemeReducer
+    theme:ThemeReducer,
+    employeesState:employeesReducer,
+    companiesState:companiesReducer
     
 })
 let persistedReducer=combinedReducer;

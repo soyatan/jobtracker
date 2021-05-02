@@ -9,22 +9,21 @@ import getstyles from './styles';
 import { jobsSelector, fetchJobsRequest } from '../../redux/jobsReducer';
 import BlogPost from '../../components/BlogPost';
 import AddJobButton from '../../components/AddJobButton';
-import { useThemedColors, useThemedStyles } from '../../modules/Theming';
+import { colorNames, useThemedColors, useThemedStyles } from '../../modules/Theming';
+import { ActivityIndicator } from 'react-native-paper';
 
 
 
 export default JobsIndex=()=>{
-  const styles=useThemedStyles(getstyles)
+  const styles=useThemedStyles(getstyles);
   useEffect(() => {
     dispatch(fetchJobsRequest())
   }, [])
   const dispatch = useDispatch();
   const loggedInUser=useSelector(userSelector);
-  
-
   const jobs=useSelector(jobsSelector);
   console.log(jobs)
-
+  const colors=useThemedColors();
   const logoutrequest=()=>{
     console.log('loggingout');
     dispatch(userLogoutRequest())}
@@ -34,18 +33,22 @@ export default JobsIndex=()=>{
     
     <View style={styles.container}>
        <View style={styles.blogcontainer}>
-      <FlatList 
-      ListHeaderComponent={()=><Text>1231312</Text>}
-      ListFooterComponent={()=><Text>1231312</Text>}
-      data={jobs}
-      renderItem={item=>
-        <BlogPost data={item}/>
-      }
-      />
-      </View>
-      <AddJobButton name={'plus'} color={'white'}/>
-      <AddJobButton onPress={()=>{logoutrequest()}} name={'sign-out'} color={'white'}/>
-      
+         {jobs?
+          <FlatList 
+          //ListHeaderComponent={()=><Text>1231312</Text>}
+          //ListFooterComponent={()=><Text>1231312</Text>}
+            data={jobs}
+            renderItem={item=>
+              <BlogPost data={item}/>
+            }
+          />
+          : <>
+          <Text>Wait please</Text> 
+          <ActivityIndicator size="large" color={colors[colorNames.header.inputText]}/>
+          </>}
+          </View>
+          <AddJobButton size={45} name={'plus'} color={colors[colorNames.header.inputText]}/>
+          
     </View>
   )
 }

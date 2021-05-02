@@ -5,7 +5,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { useThemedStyles } from '../modules/Theming'
 
 
-export default AddJobButton=({name,color,onPress})=>{
+export default AddJobButton=({name,color,onPress,size})=>{
   const styles= useThemedStyles(getstyles)
   return(
      
@@ -13,7 +13,7 @@ export default AddJobButton=({name,color,onPress})=>{
       
       <FontAwesome
             name={name}
-            size={45}
+            size={size}
             color={color}
             />
     </TouchableOpacity>

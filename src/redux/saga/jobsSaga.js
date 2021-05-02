@@ -3,9 +3,10 @@ import { FORGOT_PASSWORD, LOGIN_REQUEST, LOGOUT_REQUEST, setUser, SET_USER, SET_
 import firebase from '@react-native-firebase/app';  
 import createFBAuth from "@react-native-firebase/auth";
 import { jobsReducer,fetchJobsRequest, FETCH_JOBS, setJobs } from '../jobsReducer';
+import { baseURL } from '../../API/jobsURL';
 
 const auth=createFBAuth();
-const baseURL='http://4be0d1f1235a.ngrok.io'
+
 
 
 export function* fetchJobs (){

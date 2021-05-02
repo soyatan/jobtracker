@@ -7,7 +7,8 @@ export const Texts = {
     forgotpassword: 'Forgot Password ?',
     signin: 'SIGN IN',
     signup: 'SIGN UP',
-    signinhead: 'SIGN-IN'
+    signinhead: 'SIGN-IN',
+    jobapplications:'JOB APPLICATIONS'
 };
 export const english = {
   
@@ -19,7 +20,8 @@ export const english = {
     [Texts.forgotpassword]: 'Forgot Password ?',
     [Texts.signin]: 'SIGN IN',
     [Texts.signup]: 'SIGN UP',
-    [Texts.signinhead]: 'SIGN-IN'
+    [Texts.signinhead]: 'SIGN-IN',
+    [Texts.jobapplications]:'JOB APPLICATIONS'
 
 }
 
@@ -32,5 +34,6 @@ export const turkish = {
     [Texts.forgotpassword]: 'Şifreni mi unuttun ?',
     [Texts.signin]: 'GİRİŞ YAP',
     [Texts.signup]: 'KAYIT OL',
-    [Texts.signinhead]: 'GİRİŞ YAP'
+    [Texts.signinhead]: 'GİRİŞ YAP',
+    [Texts.jobapplications]:'İŞ BAŞVURULARI'
 }

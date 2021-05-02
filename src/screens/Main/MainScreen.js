@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { View,Text, Switch, StatusBar } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import { searchSelector, setUser, userSelector } from '../../redux/userReducer'
+import { searchSelector, setUser, userLogoutRequest, userSelector } from '../../redux/userReducer'
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -16,6 +16,7 @@ import { ThemeActions } from '../../redux/themeReducer';
 import { useDispatchChangeLocale, useLocalization } from '../../modules/Localization/LocalizationHooks';
 import { changeLocale, LocalizationActions, LocalizationSelectors } from '../../redux/localizationReducer';
 import { Texts } from '../../modules/Localization';
+import AddJobButton from '../../components/AddJobButton';
 
 //console.log(LocalizationSelectors)
 
@@ -29,7 +30,9 @@ useEffect(() => {
  
  
 }, [])
-
+const logoutrequest=()=>{
+    
+  dispatch(userLogoutRequest())}
 
 const currentLocale=loc.locale
 
@@ -91,6 +94,9 @@ const headerRightMake=()=>{
         }}
         value={darkvalue}
       />
+      </View>
+      <View style={{alignItems:'center',marginLeft:5}}>
+      <AddJobButton  size={36} onPress={()=>{logoutrequest()}} name={'sign-out'} color={colors[colorNames.header.inputText]}/>
       </View>
     </View>
   )
@@ -171,7 +177,7 @@ return(
           })}     
         >
 
-          <Main.Screen name="JOB APPLICATIONS" component={JobsMain} options={{headerShown:true}} />
+          <Main.Screen name="JOB APPLICATIONS" component={JobsMain} options={{headerShown:true,headerTitle:loc.t(Texts.jobapplications) }} />
       </Main.Navigator>
   </NavigationContainer>
   </>

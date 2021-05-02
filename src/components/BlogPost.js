@@ -1,29 +1,46 @@
 import React from 'react'
-import { View,Text} from 'react-native'
-import { TextInput } from 'react-native-paper';
+import { View,Text,TouchableOpacity} from 'react-native'
+import { ActivityIndicator, TextInput } from 'react-native-paper';
 import getstyles from './styles'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import { useThemedStyles } from '../modules/Theming';
-
+import { colorNames, useThemedColors, useThemedStyles } from '../modules/Theming';
+import { employeeSelector } from '../redux/employeesReducer';
+import { useSelector } from 'react-redux';
+import { companiesSelector } from '../redux/companyReducer';
+import { useNavigation } from '@react-navigation/native';
 
 
 export default BlogPost=({data})=>{
   const styles= useThemedStyles(getstyles)
-  const blog=data.item;
+  const job=data.item;
+  const navigation = useNavigation();
+  
+  const users=useSelector(employeeSelector)
+  const companies=useSelector(companiesSelector)
+  const currentUser=users.find(item=>item.id===job.userId)
+  const currentCompany=companies.find(item=>item.id===job.companyId)
+  const colors=useThemedColors();
+  
   return(
 
-   
+ 
         <View style={styles.blog}>
-          <View style={styles.blogleft}>
-          <FontAwesome name='user-circle-o' size={20} style={styles.portraiticon}/>
-          </View>
-          <View style={styles.blogright}>
           
-          <Text style={styles.blogtitletext} numberOfLines={1}>{blog.company}</Text>
-          <Text style={styles.blogtitletext} >{blog.title}</Text>
-          {/*<Text style={styles.blogtext} numberOfLines={1}>{blog.content}</Text>*/}
-          <Text style={styles.blogtext}>sent by user:{blog.userId} on 9.34pm, 24/08/2011</Text>
-          </View>
+          <TouchableOpacity style={styles.blogleft}>
+            <FontAwesome name='user-circle-o' size={20} style={styles.portraiticon}/>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.blogright} onPress={()=>navigation.navigate('Job Details')}>
+          {!currentCompany?  <ActivityIndicator size="small" color={colors[colorNames.header.inputText]}/> :
+            <Text style={styles.blogtitletext} numberOfLines={1}>{currentCompany.name}</Text> }
+            <Text style={styles.blogtitletext} >{job.title}</Text>
+            
+            {currentUser?
+            <Text style={styles.blogtext}>{currentUser.username} on 9.34pm, 24/08/2011</Text> 
+            :
+            <ActivityIndicator size="small" color={colors[colorNames.header.inputText]}/>}
+
+          </TouchableOpacity>
         </View>
 
         

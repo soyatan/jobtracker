@@ -8,6 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { create } from 'react-test-renderer';
 import JobsIndex from './JobsIndex';
 import { colorNames, ThemeModes, useDispatchChangeTheme, useTheme, useThemedColors } from '../../modules/Theming';
+import JobDetails from './JobDetails';
 
 export default JobsMain=()=>{
   const colors=useThemedColors();  
@@ -30,7 +31,8 @@ export default JobsMain=()=>{
         headerShown:false,
       }}
     >
-        <Jobs.Screen name="Jobs Index"  component={JobsIndex} />
+        <Jobs.Screen name="Jobs Index"  component={JobsIndex}  />
+        <Jobs.Screen name="Job Details"  component={JobDetails}  />
         {/*<Blog.Screen name="BlogAdd"   />
         <Blog.Screen name="BlogDetail"   />
     <Blog.Screen name="BlogDelete" />*/}
