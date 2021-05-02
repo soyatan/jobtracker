@@ -44,7 +44,7 @@ export default HeaderRightMake=()=>{
       {theme===ThemeModes.light?
     <Text style={{color:'black'}}>{currentLocale}</Text> : <Text style={{color:'white'}}>{currentLocale}</Text> }
     <Switch
-        trackColor={{ false: "#121212", true: "#70EFDE" }}
+        trackColor={{ false: "gray", true: "gray" }}
         thumbColor={darkvalue ? "#70EFDE" : "#121212"}
         ios_backgroundColor="#3e3e3e"
         onValueChange={value => {
@@ -59,7 +59,7 @@ export default HeaderRightMake=()=>{
       {theme===ThemeModes.light?
     <Text style={{color:'black'}}>{loc.t(Texts.light)}</Text> : <Text style={{color:'white'}}>{loc.t(Texts.dark)}</Text> }
     <Switch
-        trackColor={{ false: "#121212", true: "#70EFDE" }}
+        trackColor={{ false: "gray", true: "gray" }}
         thumbColor={darkvalue ? "#70EFDE" : "#121212"}
         ios_backgroundColor="#3e3e3e"
         onValueChange={value => {
@@ -70,7 +70,7 @@ export default HeaderRightMake=()=>{
         value={darkvalue}
       />
       </View>
-      <View style={{alignItems:'center',marginLeft:5}}>
+      <View style={{alignItems:'center',marginLeft:5,marginTop:10}}>
       <AddJobButton  size={32} onPress={()=>{logoutrequest()}} name={'sign-out'} color={colors[colorNames.header.inputText]}/>
       </View>
     </View>

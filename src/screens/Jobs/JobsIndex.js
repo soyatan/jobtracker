@@ -7,7 +7,7 @@ import { userLogoutRequest, userSelector } from '../../redux/userReducer';
 import getstyles from './styles';
 
 import { jobsSelector, fetchJobsRequest } from '../../redux/jobsReducer';
-import BlogPost from '../../components/BlogPost';
+import BlogPost from '../../components/JobPost';
 import AddJobButton from '../../components/AddJobButton';
 import { colorNames, useThemedColors, useThemedStyles } from '../../modules/Theming';
 import { ActivityIndicator } from 'react-native-paper';
@@ -42,7 +42,7 @@ export default JobsIndex=()=>{
           />
             :
              <>
-            <Text>Wait please</Text> 
+         
             <ActivityIndicator size="large" color={colors[colorNames.header.inputText]}/>
             </>
             }
