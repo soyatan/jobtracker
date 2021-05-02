@@ -22,11 +22,9 @@ export default JobsIndex=()=>{
   const dispatch = useDispatch();
   const loggedInUser=useSelector(userSelector);
   const jobs=useSelector(jobsSelector);
-  console.log(jobs)
+  //console.log(jobs)
   const colors=useThemedColors();
-  const logoutrequest=()=>{
-    console.log('loggingout');
-    dispatch(userLogoutRequest())}
+ 
  
   return(
 
@@ -42,10 +40,12 @@ export default JobsIndex=()=>{
               <BlogPost data={item}/>
             }
           />
-          : <>
-          <Text>Wait please</Text> 
-          <ActivityIndicator size="large" color={colors[colorNames.header.inputText]}/>
-          </>}
+            :
+             <>
+            <Text>Wait please</Text> 
+            <ActivityIndicator size="large" color={colors[colorNames.header.inputText]}/>
+            </>
+            }
           </View>
           <AddJobButton size={45} name={'plus'} color={colors[colorNames.header.inputText]}/>
           

@@ -9,6 +9,7 @@ import { create } from 'react-test-renderer';
 import JobsIndex from './JobsIndex';
 import { colorNames, ThemeModes, useDispatchChangeTheme, useTheme, useThemedColors } from '../../modules/Theming';
 import JobDetails from './JobDetails';
+import JobAdd from './JobAdd';
 
 export default JobsMain=()=>{
   const colors=useThemedColors();  
@@ -32,7 +33,11 @@ export default JobsMain=()=>{
       }}
     >
         <Jobs.Screen name="Jobs Index"  component={JobsIndex}  />
-        <Jobs.Screen name="Job Details"  component={JobDetails}  />
+        <Jobs.Screen name="Jobs Add"  component={JobAdd}  />
+        <Jobs.Screen 
+        name="Job Details"  
+        component={JobDetails}
+        />
         {/*<Blog.Screen name="BlogAdd"   />
         <Blog.Screen name="BlogDetail"   />
     <Blog.Screen name="BlogDelete" />*/}
