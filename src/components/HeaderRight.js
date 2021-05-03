@@ -1,4 +1,4 @@
-import { View,Text,Switch} from 'react-native'
+import { View,Text,Switch,TouchableOpacity} from 'react-native'
 import React from 'react'
 import { useState } from 'react';
 import { colorNames, ThemeModes, useThemedColors, useTheme } from '../modules/Theming';
@@ -8,10 +8,13 @@ import { useDispatch } from 'react-redux';
 import { userLogoutRequest } from '../redux/userReducer';
 import { ThemeActions } from '../redux/themeReducer';
 import { LocalizationActions } from '../redux/localizationReducer';
-
+import Turkey from './turkey.svg'
+import UK from './united-kingdom.svg'
+import Day from './sun.svg'
+import Night from './night.svg'
 
 export default HeaderRightMake=()=>{
-  const [localvalue, setlocalValue] = useState(true);
+  
   const theme=useTheme();
   const changeLocale = (key)=>{
     console.log(key)
@@ -21,14 +24,14 @@ export default HeaderRightMake=()=>{
     dispatch(ThemeActions.changeTheme({themeMode: key}))
   }
   const colors=useThemedColors();
-  const [darkvalue, setdarkValue] = useState(true);
+  
 
   const loc=useLocalization();
   const currentLocale=loc.locale
 
   useEffect(() => {
-    if(theme=== ThemeModes.light){setdarkValue(false)}
-    if(loc.locale==='tr'){setlocalValue('tr')};
+   
+   
    
   }, [])
 
@@ -38,42 +41,53 @@ export default HeaderRightMake=()=>{
   const dispatch = useDispatch()
 
   return(
-
+<>
     <View style={{alignItems:'center', flexDirection:'row'}}>
-       <View style={{alignItems:'center'}}>
-      {theme===ThemeModes.light?
-    <Text style={{color:'black'}}>{currentLocale}</Text> : <Text style={{color:'white'}}>{currentLocale}</Text> }
-    <Switch
-        trackColor={{ false: "gray", true: "gray" }}
-        thumbColor={darkvalue ? "#70EFDE" : "#121212"}
-        ios_backgroundColor="#3e3e3e"
-        onValueChange={value => {
-          setlocalValue(value)
-          {localvalue?
-          changeLocale('tr') : changeLocale('en')   }      
-        }}
-        value={localvalue}
-      />
-      </View>
+      {currentLocale==='en'?
+       <TouchableOpacity 
+        style={{alignItems:'center'}}
+        onPress={()=>changeLocale('tr')}>
+        <UK height={35} width={45}/>  
+      </TouchableOpacity>
+    
+    :
+   
+      <TouchableOpacity 
+        style={{alignItems:'center'}}
+        onPress={()=>changeLocale('en')}>
+              
+        <Turkey height={40} width={45}/>  
+      </TouchableOpacity>
+      }
+    
+  
+  
+
+
+
       <View style={{alignItems:'center'}}>
+
+     
       {theme===ThemeModes.light?
-    <Text style={{color:'black'}}>{loc.t(Texts.light)}</Text> : <Text style={{color:'white'}}>{loc.t(Texts.dark)}</Text> }
-    <Switch
-        trackColor={{ false: "gray", true: "gray" }}
-        thumbColor={darkvalue ? "#70EFDE" : "#121212"}
-        ios_backgroundColor="#3e3e3e"
-        onValueChange={value => {
-          setdarkValue(value);
-          {darkvalue?
-          changeThemeHere('light') : changeThemeHere('dark')   }      
-        }}
-        value={darkvalue}
-      />
+      <TouchableOpacity
+      onPress={()=>{changeThemeHere('dark')}}>
+        <Day width={30}/>
+           </TouchableOpacity>
+        :
+        <TouchableOpacity
+        onPress={()=>{changeThemeHere('light')}}>
+          <Night width={35}/>
+             </TouchableOpacity>
+
+      }
+
+
       </View>
-      <View style={{alignItems:'center',marginLeft:5,marginTop:10}}>
+      
+      <View style={{alignItems:'center',marginLeft:10,marginRight:10}}>
       <AddJobButton  size={32} onPress={()=>{logoutrequest()}} name={'sign-out'} color={colors[colorNames.header.inputText]}/>
       </View>
-    </View>
+      </View>
+    </>
   )
 }
-  

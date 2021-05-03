@@ -20,7 +20,8 @@ export default BlogPost=({data})=>{
   const currentUser=users.find(item=>item.id===job.userId)
   const currentCompany=companies.find(item=>item.id===job.companyId)
   const colors=useThemedColors();
-  
+ 
+
   return(
 
  
@@ -36,7 +37,7 @@ export default BlogPost=({data})=>{
             <Text style={styles.blogtitletext} >{job.title}</Text>
             
             {currentUser?
-            <Text style={styles.blogtext}>{currentUser.username} on 9.34pm, 24/08/2011</Text> 
+            <Text style={styles.jobtext}>{currentUser.username} on 9.34pm, 24/08/2011</Text> 
             :
             <ActivityIndicator size="small" color={colors[colorNames.header.inputText]}/>}
 

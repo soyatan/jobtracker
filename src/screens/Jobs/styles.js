@@ -26,11 +26,21 @@ export default styles=(Colors)=>StyleSheet.create({
         //paddingTop:25,        
         //height:50,
         justifyContent:'center',
+        flex:5,
         
     },
     blogtext:{
         textAlignVertical:'center',
         color:Colors[cn.jobs.jobtextcolor],
+        
+    },
+    addnewjobcontainer:{
+        margin:5,
+        backgroundColor:Colors[cn.header.background],
+        //paddingTop:25,        
+        //height:50,
+        justifyContent:'center',
+        flex:1,
         
     },
 
@@ -40,7 +50,7 @@ export default styles=(Colors)=>StyleSheet.create({
         backgroundColor:Colors[cn.header.background],
         //paddingTop:25,        
         //height:50,
-        justifyContent:'flex-start',
+        
         flex:1,
         
     },
@@ -79,14 +89,36 @@ export default styles=(Colors)=>StyleSheet.create({
     },
     meetings:{
 
+        backgroundColor:Colors[cn.jobs.modalbackground],
         margin:5,
-        backgroundColor:Colors[cn.jobs.background],
+        padding:8,
+        justifyContent:'space-between',
+        borderRadius:15,
+        textAlignVertical:'center',
+        flexDirection:'row',
+        alignItems:'center',
+
+        
         
     },
     meeting:{
         margin:5,
-        backgroundColor:Colors[cn.jobs.background],
+        padding:5,
         
+        flex:1,
+        
+        alignItems:'stretch',
+        justifyContent:'space-between',
+        
+        
+    },
+    meetingItem:{
+        margin:5,
+        padding:5,
+       flex:1,
+        backgroundColor:Colors[cn.header.background],
+        borderRadius:15,
+      
         
     },
     jobtext:{

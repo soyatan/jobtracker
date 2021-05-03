@@ -9,7 +9,7 @@ export default styles=(Colors)=>StyleSheet.create({
     },
     textinput:{
 
-      borderColor:Colors[cn.auth.inputBackground],
+      
       backgroundColor:Colors[cn.auth.inputBackground],
       
       
@@ -34,6 +34,8 @@ export default styles=(Colors)=>StyleSheet.create({
     },
     blog:{
         backgroundColor:Colors[cn.jobs.background],
+        borderRadius:15,
+        padding:8,
         margin:5,
         alignItems:'center',
         justifyContent:'center',
@@ -102,7 +104,79 @@ export default styles=(Colors)=>StyleSheet.create({
         
         justifyContent:'center',
         alignItems:'center',
-    }
+    },
+    jobinputcontainer:{
+        backgroundColor:Colors[cn.jobs.background],
+        margin:5,
+        padding:8,
+        justifyContent:'center',
+        borderRadius:15,
+        textAlignVertical:'center',
+        
+    },
+    jobtext:{
+        textAlignVertical:'center',
+       
+        color:Colors[cn.jobs.jobtextcolor2],
+        fontSize:15,
+        borderRadius:5,
+        
+    },
+    jobtitletext:{
+        textAlignVertical:'center',
+        fontWeight:'bold',
+        fontSize:17,
+        color:Colors[cn.jobs.jobtextcolor],
+        paddingBottom:5,
+        
+    },
+    centeredView:{
+        marginTop:80,
+        marginRight:10,
+        marginLeft:10,
+        flex:1,
+        borderColor:'white',
+        borderRadius:15,
+        padding:25,
+        backgroundColor:Colors[cn.jobs.modalbackground],
+        alignContent:'flex-end',
+        
+    
+        
+    },
+   
+    modalBottom:{
+        
+        flexDirection:'row',
+        
+        justifyContent:'space-between',
+        alignItems:'flex-end',
+        alignContent:'flex-end',
+        
+        alignSelf:'flex-end',
+        marginTop:20,        
+         
+     },
+     modalbutton:{
+        backgroundColor:Colors[cn.jobs.modalbuttonbackground],
+         alignSelf:'stretch',
+         flex:1,
+         justifyContent:'center',
+         alignItems:'center',
+         margin:5,
+         borderRadius:15,
+         borderWidth:1,
+     },
+     meetingheader:{
+        backgroundColor:Colors[cn.jobs.modalbuttonbackground],
+         alignSelf:'stretch',
+         flex:1,
+         justifyContent:'center',
+         alignItems:'center',
+         margin:5,
+         borderRadius:15,
+         borderWidth:1,
+     },
 
 })
 

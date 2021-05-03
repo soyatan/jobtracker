@@ -3,11 +3,18 @@ const constantColors = {
     white: '#FFFFFF',
     purplelight:'#DBB2FF',
     purplestd:'#BB86FC',
-    black: '#121212',
+    black: '#0e1111',
+    black5: '#232b2b',
+    black4: '#353839',
+    black3: '#3b444b',
+    black2: '#414a4c',
+    graydark: '#536872',
+    graylight: '#708090',
     transparent: 'transparent',
     pink: '#ff9cf7',
     greenlight:'#70EFDE',
-    greendark:'#018786'
+    greendark:'#018786',
+    crema:'#e7e7da'
 
 };
 
@@ -58,7 +65,11 @@ export const colorNames = {
     },
     jobs:{
         background: 'jobs/background',
-        jobtextcolor:'jobs/textcolor'
+        jobtextcolor:'jobs/textcolor',
+        jobtextcolor2:'jobs/textcolor2',
+        modalbackground:'modal/background',
+        modalbuttonbackground:'modal/buttonbackground',
+
     }
 };
 
@@ -66,16 +77,21 @@ export const darkColors = {
     // auth
     [colorNames.auth.background]: constantColors.black,
     [colorNames.auth.selectionColor]: constantColors.black,
-    [colorNames.auth.inputBackground]: constantColors.black,
+    [colorNames.auth.inputBackground]: constantColors.black5,
 
     [colorNames.status.statusbarbackground]: constantColors.black,
 
-    [colorNames.header.background]: constantColors.black,
+    [colorNames.header.background]: constantColors.black3,
     [colorNames.header.inputBorder]: constantColors.white,
     [colorNames.header.inputText]: constantColors.white,
 
-    [colorNames.jobs.background]: constantColors.greendark,
+    [colorNames.jobs.background]: constantColors.black4,
+    
     [colorNames.jobs.jobtextcolor]: constantColors.white,
+    [colorNames.jobs.jobtextcolor2]: constantColors.crema,
+
+    [colorNames.jobs.modalbackground]: constantColors.crema,
+    [colorNames.jobs.modalbuttonbackground]: constantColors.crema,
 
 };
 
@@ -83,7 +99,7 @@ export const lightColors = {
     // auth
     [colorNames.auth.background]: constantColors.white,  
     [colorNames.auth.selectionColor]: constantColors.white,
-    [colorNames.auth.inputBackground]: constantColors.white,
+    [colorNames.auth.inputBackground]: constantColors.graylight,
 
 
     [colorNames.header.background]: constantColors.purplestd,

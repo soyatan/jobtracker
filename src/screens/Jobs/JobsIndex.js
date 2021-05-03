@@ -47,8 +47,10 @@ export default JobsIndex=()=>{
             </>
             }
           </View>
+      <View style={styles.addnewjobcontainer}>
           <AddJobButton size={45} name={'plus'} color={colors[colorNames.header.inputText]}/>
-          
+          </View>
+         
     </View>
   )
 }
