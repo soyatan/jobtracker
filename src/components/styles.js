@@ -177,6 +177,12 @@ export default styles=(Colors)=>StyleSheet.create({
          borderRadius:15,
          borderWidth:1,
      },
+     addjobcontainer:{
+        
+        
+         
+         
+     },
 
 })
 

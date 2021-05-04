@@ -11,6 +11,8 @@ import BlogPost from '../../components/JobPost';
 import AddJobButton from '../../components/AddJobButton';
 import { colorNames, useThemedColors, useThemedStyles } from '../../modules/Theming';
 import { ActivityIndicator } from 'react-native-paper';
+import { useState } from 'react';
+import AddJobModal from '../../components/addJobModal';
 
 
 
@@ -24,13 +26,14 @@ export default JobsIndex=()=>{
   const jobs=useSelector(jobsSelector);
   //console.log(jobs)
   const colors=useThemedColors();
- 
+  const [modalVisible, setModalVisible] = useState(false);
  
   return(
 
     
     <View style={styles.container}>
        <View style={styles.blogcontainer}>
+         <AddJobModal modalVisible={modalVisible} setModalVisible={setModalVisible} />
          {jobs?
           <FlatList 
           //ListHeaderComponent={()=><Text>1231312</Text>}
@@ -48,7 +51,7 @@ export default JobsIndex=()=>{
             }
           </View>
       <View style={styles.addnewjobcontainer}>
-          <AddJobButton size={45} name={'plus'} color={colors[colorNames.header.inputText]}/>
+          <AddJobButton onPress={()=>setModalVisible(true)}size={45} name={'plus'} color={colors[colorNames.header.inputText]}/>
           </View>
          
     </View>
