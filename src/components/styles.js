@@ -137,7 +137,7 @@ export default styles=(Colors)=>StyleSheet.create({
         flex:1,
         borderColor:'white',
         borderRadius:15,
-        padding:25,
+        padding:15,
         backgroundColor:Colors[cn.jobs.modalbackground],
         alignContent:'flex-end',
         
