@@ -1,22 +1,22 @@
 import React, { useState } from 'react'
-import { View,Text,Switch,TouchableOpacity} from 'react-native'
-import AuthButton from '../../components/AuthButton'
-import AuthInput from '../../components/AuthInput'
-import SocialButton from '../../components/SocialButton'
+import { View,Text,TouchableOpacity} from 'react-native'
+
 import getStyles from './styles'
-import auth from '@react-native-firebase/auth';
+
 
 import { userForgotPassword, userLogInRequest, userSetRequest } from '../../redux/userReducer'
 import { useDispatch } from 'react-redux'
-import { useDispatchChangeTheme, useThemedStyles } from '../../modules/Theming'
-import { changeTheme, ThemeActions } from '../../redux/themeReducer'
+import { useThemedStyles } from '../../modules/Theming'
 import { Texts, useLocalization } from '../../modules/Localization'
-//import Switch from 'react-native-dark-mode-switch';
+
+import AuthButton from '../../components/AuthButton/AuthButton';
+import AuthInput from '../../components/AuthInput/AuthInput';
+import SocialButton from '../../components/SocialButton/SocialButton';
 
 
 
 export default AuthScreen=()=>{
-  const [value, setValue] = useState(true);
+
   const loc=useLocalization();
   const styles= useThemedStyles(getStyles)
   console.log('styles',styles)
@@ -39,13 +39,8 @@ export default AuthScreen=()=>{
     console.log('remembering the password process.')
     dispatch(userForgotPassword(email))
 
-    //auth().sendPasswordResetEmail(email)
   }
-  
-  const changeThemeHere = (key)=>{
-    dispatch(ThemeActions.changeTheme({themeMode: key}))
-    
-  }
+
  
 
   return(
@@ -60,7 +55,7 @@ export default AuthScreen=()=>{
       {isSignIn ? null : 
       <AuthInput label={loc.t(Texts.password)}  onChangeText={(userPassword)=>setPassword(userPassword)}  labelValue={confirmPassword} secureTextEntry={true} />}
       
-      <TouchableOpacity style={styles.passwordtextcontainer} onPress={()=>{ForgotPassword()}}><Text style={styles.text1}>{loc.t(Texts.forgotpassword)} </Text></TouchableOpacity>
+      <TouchableOpacity style={styles.forgotpasswordcontainer} onPress={()=>{ForgotPassword()}}><Text style={styles.textred}>{loc.t(Texts.forgotpassword)} </Text></TouchableOpacity>
       
       <AuthButton label={isSignIn ? loc.t(Texts.signin) : loc.t(Texts.signup)} onPress={()=>{isSignIn? SignInUser() : RegisterUser()}}/>
 

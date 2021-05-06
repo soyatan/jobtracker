@@ -15,9 +15,9 @@ import { colorNames, ThemeModes, useDispatchChangeTheme, useTheme, useThemedColo
 
 import { useLocalization } from '../../modules/Localization/LocalizationHooks';
 import { Texts } from '../../modules/Localization';
+import HeaderLeftMake from '../../components/HeaderLeft/HeaderLeft';
+import HeaderRightMake from '../../components/HeaderRight/HeaderRight';
 
-import HeaderLeftMake from '../../components/HeaderLeft';
-import HeaderRightMake from '../../components/HeaderRight';
 
 //console.log(LocalizationSelectors)
 
@@ -104,7 +104,7 @@ const MainScreen=()=>{
               headerTitleStyle:{
                 color:colors[colorNames.header.inputText],
                 alignSelf:'center',
-                paddingRight:15,
+                paddingRight:25,
                 fontSize:18,
                 
                 

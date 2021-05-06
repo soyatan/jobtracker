@@ -2,7 +2,7 @@ import { View,Text,TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import AntDesign from 'react-native-vector-icons/AntDesign'
-import { colorNames, useThemedColors } from '../modules/Theming'
+import { colorNames, useThemedColors } from '../../modules/Theming'
 
 
 export default HeaderLeftMake=()=>{

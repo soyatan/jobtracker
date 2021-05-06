@@ -2,7 +2,7 @@ import React from 'react'
 import { View,Text,TextInput, TouchableOpacity} from 'react-native'
 import getstyles from './styles'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import { useThemedStyles } from '../modules/Theming'
+import { useThemedStyles } from '../../modules/Theming'
 
 
 export default SocialButton=({name})=>{

@@ -1,10 +1,30 @@
 import { takeEvery, fork, select, put, take, apply, delay, call, race, all, effectTypes, takeLatest } from 'redux-saga/effects';
-import { FORGOT_PASSWORD, LOGIN_REQUEST, LOGOUT_REQUEST, setUser, SET_USER, SET_USER_REQUEST, userForgotPassword, userReducer } from '../userReducer';
+import { addUserRequest, ADD_USER, FORGOT_PASSWORD, LOGIN_REQUEST, LOGOUT_REQUEST, setUser, SET_USER, SET_USER_REQUEST, userForgotPassword, userReducer } from '../userReducer';
 import firebase from '@react-native-firebase/app';  
 import createFBAuth from "@react-native-firebase/auth";
 
 const auth=createFBAuth();
 
+export function* addUserz({payload}){
+    console.log('welcome to add usersss')
+    const {email} = payload;
+    console.log(email)
+    /*
+    
+    try{
+        
+        auth.sendPasswordResetEmail(email)
+        alert('email sent for reset')    
+            
+
+    } catch (error) {
+        //const error_message = { code: error.code, message: error.message };
+        console.log(error)
+    
+        //yield put({ type: AUTHENTICATION_FAILED, error: error_message });
+      }
+      */
+}
 
 
 export function* resetRequest({payload}){
@@ -110,11 +130,18 @@ export function* watchForgotPWSaga () {
 }
 
 
+export function* watchAddUserSaga () {
+    yield takeEvery(ADD_USER,addUserz);
+}
+
+
+
 const userSaga=[
     fork(watchSignUpSaga),
     fork(watchLogoutsaga),
     fork(watchLoginSaga),
-    fork(watchForgotPWSaga)
+    fork(watchForgotPWSaga),
+    fork(watchAddUserSaga)
 ];
 
 export default userSaga;

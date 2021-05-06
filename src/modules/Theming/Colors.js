@@ -14,7 +14,9 @@ const constantColors = {
     pink: '#ff9cf7',
     greenlight:'#70EFDE',
     greendark:'#018786',
-    crema:'#e7e7da'
+    crema:'#e7e7da',
+    cremamedium:'#dadace',
+    cremadark:'#c4c4b5'
 
 };
 
@@ -69,7 +71,10 @@ export const colorNames = {
         jobtextcolor2:'jobs/textcolor2',
         modalbackground:'modal/background',
         modalbuttonbackground:'modal/buttonbackground',
-
+        jobinputbackground:'jobs/jobinputbackground'
+    },
+    searchbar:{
+        background:'searchbar/background'
     }
 };
 
@@ -77,7 +82,7 @@ export const darkColors = {
     // auth
     [colorNames.auth.background]: constantColors.black,
     [colorNames.auth.selectionColor]: constantColors.black,
-    [colorNames.auth.inputBackground]: constantColors.black5,
+    [colorNames.auth.inputBackground]: constantColors.black3,
 
     [colorNames.status.statusbarbackground]: constantColors.black,
 
@@ -92,20 +97,29 @@ export const darkColors = {
 
     [colorNames.jobs.modalbackground]: constantColors.crema,
     [colorNames.jobs.modalbuttonbackground]: constantColors.crema,
+    [colorNames.jobs.jobinputbackground]: constantColors.black5,
+
+    [colorNames.searchbar.background]: constantColors.black4,
+
+
 
 };
 
 export const lightColors = {
     // auth
-    [colorNames.auth.background]: constantColors.white,  
-    [colorNames.auth.selectionColor]: constantColors.white,
-    [colorNames.auth.inputBackground]: constantColors.graylight,
+    [colorNames.auth.background]: constantColors.crema,  
+    [colorNames.auth.selectionColor]: constantColors.crema,
+    [colorNames.auth.inputBackground]: constantColors.creamme,
 
 
     [colorNames.header.background]: constantColors.purplestd,
     [colorNames.status.statusbarbackground]: constantColors.purplelight, 
     [colorNames.header.inputBorder]: constantColors.black,
+    
     [colorNames.header.inputText]: constantColors.black,
     [colorNames.jobs.background]: constantColors.purplelight,
     [colorNames.jobs.jobtextcolor]: constantColors.black,
+    [colorNames.jobs.jobinputbackground]: constantColors.black,
+
+    [colorNames.searchbar.background]: constantColors.crema,
 };

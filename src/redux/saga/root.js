@@ -1,5 +1,7 @@
 import { all } from 'redux-saga/effects';
+import addJobSaga from './addJobSaga';
 import companiesSaga from './companiesSaga';
+import deleteJobSaga from './deleteJobSaga copy';
 import employeesSaga from './employeesSaga';
 import jobsSaga from './jobsSaga';
 
@@ -15,7 +17,9 @@ export default function* root() {
         ...userSaga,
         ...jobsSaga,
         ...employeesSaga,
-        ...companiesSaga
+        ...companiesSaga,
+        ...addJobSaga,
+        ...deleteJobSaga
     
     ])
 };

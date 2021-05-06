@@ -5,9 +5,11 @@ export const userSelector=state=>state.userState;
 
 export const SET_USER_REQUEST='user/set/request';
 export const SET_USER='user/set';
+export const ADD_USER='user/ADD';
 export const LOGOUT_REQUEST='user/logout/request';
 export const LOGIN_REQUEST='user/login/request';
 export const FORGOT_PASSWORD='user/forgot/password';
+
 
 
 
@@ -51,7 +53,14 @@ export const setUser = (user) =>{
         }
     }
 }
-
+export const addUserRequest = (user) =>{
+    return{
+        type: ADD_USER,
+        payload:{
+            user
+        }
+    }
+}
 export const userReducer =(state=INITIAL_STATE,action)=>{
     switch(action.type){
         case SET_USER:

@@ -1,6 +1,7 @@
-import React from 'react'
+
 import { StyleSheet } from 'react-native'
 import { colorNames as cn, useThemedColors }  from '../../modules/Theming'
+import  {width as w,height as h} from '../../constants/Metrics'
 
 export default styles=(Colors)=>StyleSheet.create({
 
@@ -9,33 +10,34 @@ export default styles=(Colors)=>StyleSheet.create({
         backgroundColor:Colors[cn.header.background],
         alignItems:'stretch',
         flexGrow:1,
-        padding:5,
-        paddingTop:35,
+        padding:w*0.01,
+        paddingTop:w*0.02,
     },
-    jobdetailmaincontainer:{
+    searchbarcontainer:{
+        paddingLeft:w*0.03,
+        paddingRight:w*0.03,
+        paddingBottom:h*0.01,
+        margin:w*0.01,
         flex:1,
+        
+
+    },
+    searchbar:{
+        backgroundColor:Colors[cn.searchbar.background],
+        borderRadius:15,
+        
+    },
+
+    blogcontainer:{
+        margin:h*0.01,
         backgroundColor:Colors[cn.header.background],
        
-        flexGrow:1,
-        padding:5,
-        
-    },
-    blogcontainer:{
-        margin:5,
-        backgroundColor:Colors[cn.header.background],
-        //paddingTop:25,        
-        //height:50,
         justifyContent:'center',
-        flex:5,
-        
-    },
-    blogtext:{
-        textAlignVertical:'center',
-        color:Colors[cn.jobs.jobtextcolor],
+        flex:10,
         
     },
     addnewjobcontainer:{
-        margin:5,
+        margin:h*0.01,
         backgroundColor:Colors[cn.header.background],
         //paddingTop:25,        
         //height:50,
@@ -44,16 +46,61 @@ export default styles=(Colors)=>StyleSheet.create({
         
     },
 
-   
-    jobcontainer:{
-        margin:5,
+
+    jobdetailmaincontainer:{
+        flex:1,
         backgroundColor:Colors[cn.header.background],
-        //paddingTop:25,        
-        //height:50,
+       
+        flexGrow:1,
+        padding:w*0.01,
+        
+    },
+  
+    jobcontainer:{
+        margin:w*0.01,
+        backgroundColor:Colors[cn.header.background],
+       
         
         flex:1,
         
     },
+    meetings:{
+
+        backgroundColor:Colors[cn.jobs.modalbackground],
+        margin:w*0.015,
+        padding:w*0.015,
+        justifyContent:'space-between',
+        borderRadius:15,
+        textAlignVertical:'center',
+        flexDirection:'row',
+        alignItems:'center',
+
+    },
+    meetingstext:{
+        color:'black',
+        paddingLeft:w*0.01,
+        fontWeight:'bold',
+        fontSize:w*0.04
+    },
+    meetingicon:{
+        width:w*0.1,
+        height:w*0.08,
+    },
+
+
+
+
+
+
+
+    blogtext:{
+        textAlignVertical:'center',
+        color:Colors[cn.jobs.jobtextcolor],
+        
+    },
+   
+   
+   
     usercontainer:{
 
         backgroundColor:Colors[cn.jobs.background],
@@ -87,20 +134,7 @@ export default styles=(Colors)=>StyleSheet.create({
         
         
     },
-    meetings:{
-
-        backgroundColor:Colors[cn.jobs.modalbackground],
-        margin:5,
-        padding:8,
-        justifyContent:'space-between',
-        borderRadius:15,
-        textAlignVertical:'center',
-        flexDirection:'row',
-        alignItems:'center',
-
-        
-        
-    },
+    
     meeting:{
         margin:5,
         padding:5,

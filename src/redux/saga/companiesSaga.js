@@ -12,8 +12,8 @@ import { setComapnies } from '../companyReducer';
 
 export function* fetchCompanies (companyId){
     
-    console.log('welcome to fetchcompanies');
-    console.log('companyId geldi', companyId)
+    //console.log('welcome to fetchcompanies');
+    //console.log('companyId geldi', companyId)
 
     
     try{

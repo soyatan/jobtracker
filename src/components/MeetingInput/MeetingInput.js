@@ -5,11 +5,11 @@
 import { View,Text,TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { TextInput } from 'react-native-gesture-handler';
-import { useThemedStyles } from '../modules/Theming';
+import { useThemedStyles } from '../../modules/Theming';
 import getstyles from './styles'  
 
 
-export default JobInput=({title,text})=>{
+export default MeetingInput=({title,text})=>{
 useEffect(() => {
     setValue(text)
    

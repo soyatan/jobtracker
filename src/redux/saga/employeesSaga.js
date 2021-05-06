@@ -12,8 +12,8 @@ const auth=createFBAuth();
 
 export function* fetchUsers (userId){
     
-    console.log('welcome to fetchusers');
-    console.log('userId geldi', userId)
+    //console.log('welcome to fetchusers');
+    //console.log('userId geldi', userId)
 
     
     try{

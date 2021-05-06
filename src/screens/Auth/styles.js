@@ -2,35 +2,33 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 
 import { colorNames as cn, useThemedColors }  from '../../modules/Theming'
-
-
+import  {width as w,height as h} from '../../constants/Metrics'
 
 export default styles=(Colors)=>StyleSheet.create({
 
     container:{
         flex:1,
         backgroundColor: Colors[cn.auth.background],
-        
         flexGrow:1,
-        padding:5,
-        paddingTop:35,
+        padding:h*0.02,
+        paddingTop:h*0.04,
     },
-    text1:{
-        color:'red',
-        
-        
-    },
+
+  
     socialcontainer:{
-        paddingTop:25,        
+        paddingTop:h*0.05,        
         flexDirection:'row',
         justifyContent:'space-evenly'
     },
-    passwordtextcontainer:{
+    forgotpasswordcontainer:{
         flexDirection:'row',
         justifyContent:'flex-end',
-        paddingTop:5,
+        paddingTop:h*0.02,
         
-    }
+    },
+    textred:{
+        color:'red',
+    },
 
 })
 

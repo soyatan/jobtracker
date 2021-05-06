@@ -1,18 +1,13 @@
 import React from 'react'
-import { View,Text, TouchableOpacity } from 'react-native'
-import auth from '@react-native-firebase/auth';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavigationContainer } from '@react-navigation/native';
-import { userLogoutRequest, userSelector } from '../../redux/userReducer';
 import { createStackNavigator } from '@react-navigation/stack';
-import { create } from 'react-test-renderer';
+
 import JobsIndex from './JobsIndex';
-import { colorNames, ThemeModes, useDispatchChangeTheme, useTheme, useThemedColors } from '../../modules/Theming';
+
 import JobDetails from './JobDetails';
-import JobAdd from './JobAdd';
+
 
 export default JobsMain=()=>{
-  const colors=useThemedColors();  
+  
   const Jobs=createStackNavigator();
         
 
@@ -33,14 +28,11 @@ export default JobsMain=()=>{
       }}
     >
         <Jobs.Screen name="Jobs Index"  component={JobsIndex}  />
-        <Jobs.Screen name="Jobs Add"  component={JobAdd}  />
+        
         <Jobs.Screen 
         name="Job Details"  
         component={JobDetails}
         />
-        {/*<Blog.Screen name="BlogAdd"   />
-        <Blog.Screen name="BlogDetail"   />
-    <Blog.Screen name="BlogDelete" />*/}
 
     </Jobs.Navigator>
 

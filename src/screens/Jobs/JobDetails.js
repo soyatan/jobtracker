@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 import { View,Text,FlatList, TouchableOpacity, TextInput,ScrollView} from 'react-native'
 
-import { SafeAreaInsetsContext } from 'react-native-safe-area-context'
+
 import { useSelector } from 'react-redux'
-import JobInput from '../../components/JobInput'
+import JobInput from '../../components/JobInput/JobInput'
 import { colorNames, useThemedColors, useThemedStyles } from '../../modules/Theming'
 import { jobsSelector } from '../../redux/jobsReducer'
 import getstyles from './styles'
 
-import Minimize from '../../components/minimize.svg'
-import Maximize from '../../components/maximize.svg'
-import Inside from '../../components/inside.svg'
-import MeetingModal from '../../components/meetingModal'
+
+import Maximize from '../../components/icons/maximize.svg'
+
+import MeetingModal from '../../components/MeetingModal/MeetingModal'
 
 export default JobDetails =({route})=>{
 const{jobId}=route.params
@@ -41,7 +41,9 @@ const hideMeetingsTouch=()=>{
   
     <View style={styles.jobdetailmaincontainer}>
       
-        <ScrollView style={styles.jobcontainer}>
+        <ScrollView 
+        style={styles.jobcontainer}
+        showsVerticalScrollIndicator={false}>
 
          <JobInput title={'Applied As:'} text={job.userId}/>
 
@@ -50,8 +52,7 @@ const hideMeetingsTouch=()=>{
          <JobInput title={'Company Name:'} text={job.companyId}/>
          <JobInput title={'Location:'} text={job.location}/>
          <JobInput title={'Job Description:'} text={job.content}/>
-         <JobInput title={'Job Description:'} text={job.content}/>
-         <JobInput title={'Job Description:'} text={job.content}/>
+
          <JobInput title={'URL:'} text={job.URL}/>
          <JobInput title={'Application Date:'} text={job.appdate}/>
          
@@ -62,19 +63,14 @@ const hideMeetingsTouch=()=>{
       
         <View style={styles.meetings}>
 
-<Text style={{color:'black',paddingLeft:5,fontWeight:'bold',fontSize:20}}>{job.meetings.length} interviews found!  </Text>
-            <TouchableOpacity onPress={()=>showMeetingsTouch()} >
-              <Maximize width={35} height={35}/>
-            </TouchableOpacity>
-          </View>
+          <Text style={styles.meetingstext}>{job.meetings.length} interviews found!  </Text>
+          <TouchableOpacity onPress={()=>showMeetingsTouch()} >
+              <Maximize width={styles.meetingicon.width} height={styles.meetingicon.height}/>
+          </TouchableOpacity>
+        </View>
           
     </View>
     </>
   )
   
 }
-/*
-
-<TouchableOpacity onPress={()=>hideMeetingsTouch()}>
-<Inside width={35} height={35}/>
-</TouchableOpacity>*/

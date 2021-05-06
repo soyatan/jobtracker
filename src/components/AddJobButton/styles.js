@@ -1,15 +1,13 @@
-import React from 'react'
+import  {width as w,height as h} from '../../constants/Metrics'
 import { StyleSheet } from 'react-native'
 
-import { colorNames as cn, useThemedColors }  from '../modules/Theming'
+import { colorNames as cn, useThemedColors }  from '../../modules/Theming'
 
 export default styles=(Colors)=>StyleSheet.create({
     textinputcontainer:{
-        paddingTop:10,
+        paddingTop:h*0.022,
     },
     textinput:{
-
-      
       backgroundColor:Colors[cn.auth.inputBackground],
       
       
