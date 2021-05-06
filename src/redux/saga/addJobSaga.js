@@ -15,7 +15,7 @@ export function* addJob ({job}){
     
    
     
-    console.log('u wanted to add shit.')
+    console.log('u wanted to add job.')
     //console.log(job)
     
     
@@ -40,47 +40,14 @@ export function* addJob ({job}){
      
 }
 
-export function* addUserRequestz(user) {
-
-    console.log('user',user)
-    const addUser={username:user}
-    const users=yield select(employeeSelector);
-    if (users.some(item=>item.username===user)){
-        return(
-            console.log('user found')
-        )
-    }
-    else
-    try{
-        yield fetch(baseURL+'/users',{
-            method:'POST',
-            headers:{
-                'Accept': 'application/json',
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify(addUser)
-        })
-        
-        //yield put(addJobr(job))
-        //const data=yield response.json();
-        //yield put(setJobs(data))
-        
-    } catch (error) {
-        console.log(error)
-      }
-      
-     
-    
-}
-
 
 
 export function* watchAddJobRequest () {
     const {payload}=yield take(ADD_JOB_REQUEST,addJob);
     console.log(payload)
-    yield all([
-        call(addJob,payload),
-        call(addUserRequestz,payload.job.user) ])
+    yield all(call(addJob,payload))
+
+    //call(addUserRequestz,payload.job.user)
     
 
 }

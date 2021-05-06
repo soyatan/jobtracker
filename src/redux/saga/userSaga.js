@@ -2,29 +2,49 @@ import { takeEvery, fork, select, put, take, apply, delay, call, race, all, effe
 import { addUserRequest, ADD_USER, FORGOT_PASSWORD, LOGIN_REQUEST, LOGOUT_REQUEST, setUser, SET_USER, SET_USER_REQUEST, userForgotPassword, userReducer } from '../userReducer';
 import firebase from '@react-native-firebase/app';  
 import createFBAuth from "@react-native-firebase/auth";
+import { employeeSelector } from '../employeesReducer';
+import { baseURL } from '../../API/jobsURL';
 
 const auth=createFBAuth();
 
-export function* addUserz({payload}){
-    console.log('welcome to add usersss')
-    const {email} = payload;
-    console.log(email)
-    /*
-    
-    try{
-        
-        auth.sendPasswordResetEmail(email)
-        alert('email sent for reset')    
-            
 
-    } catch (error) {
-        //const error_message = { code: error.code, message: error.message };
-        console.log(error)
+export function* addUserRequestz({payload}) {
+
+    console.log('user',payload.user)
+    const addUser={username:payload.user}
+
+    const response=yield call(fetch,baseURL+'/users')
+     const users=yield response.json();
+        
+   
     
-        //yield put({ type: AUTHENTICATION_FAILED, error: error_message });
+    if (users.some(item=>item.username===payload.user)){
+        return(
+            console.log('user found')
+        )
+    }
+    else
+    try{
+        yield fetch(baseURL+'/users',{
+            method:'POST',
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(addUser)
+        })
+        
+        //yield put(addJobr(job))
+        //const data=yield response.json();
+        //yield put(setJobs(data))
+  
+    } catch (error) {
+        console.log(error)
       }
-      */
+      
+    
 }
+
 
 
 export function* resetRequest({payload}){
@@ -131,7 +151,7 @@ export function* watchForgotPWSaga () {
 
 
 export function* watchAddUserSaga () {
-    yield takeEvery(ADD_USER,addUserz);
+    yield takeEvery(ADD_USER,addUserRequestz);
 }
 
 

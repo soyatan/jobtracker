@@ -4,6 +4,7 @@ const INITIAL_STATE = [];
 export const employeeSelector=state=>state.employeesState;
 
 export const SET_EMPLOYEES='employees/set';
+export const GET_EMPLOYEES='employees/get';
 export const FETCH_EMPLOYEES='employees/fetch';
 
 
@@ -16,6 +17,12 @@ export const setEmployees = (users) =>{
     }
 }
 
+export const getEmployees = () =>{
+    return{
+        type: GET_EMPLOYEES,
+      
+    }
+}
 
 
 export const fetchEmployeesRequest = () =>{

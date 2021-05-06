@@ -3,7 +3,7 @@ import { View,Text, TouchableOpacity,FlatList } from 'react-native'
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { userLogoutRequest, userSelector } from '../../redux/userReducer';
+import { addUserRequest, userLogoutRequest, userSelector } from '../../redux/userReducer';
 import getstyles from './styles';
 
 import { jobsSelector, fetchJobsRequest } from '../../redux/jobsReducer';
@@ -28,7 +28,8 @@ export default JobsIndex=()=>{
   const submitSearch=()=>{
     alert(searchQuery)
   }
-  
+  const curuser=useSelector(userSelector)
+  const userEmail=curuser.email
   const styles=useThemedStyles(getstyles);
   useEffect(() => {
     dispatch(fetchJobsRequest())
@@ -40,6 +41,12 @@ export default JobsIndex=()=>{
   
   const colors=useThemedColors();
   const [modalVisible, setModalVisible] = useState(false);
+
+  const showAddModalandSendUser=()=>{
+
+  dispatch(addUserRequest(userEmail))
+    setModalVisible(true)
+  }
  
   return(
 
@@ -75,7 +82,7 @@ export default JobsIndex=()=>{
       </View>
 
       <View style={styles.addnewjobcontainer}>
-          <AddJobButton onPress={()=>setModalVisible(true)}size={45} name={'plus'} color={colors[colorNames.header.inputText]}/>
+          <AddJobButton onPress={()=>showAddModalandSendUser()}size={45} name={'plus'} color={colors[colorNames.header.inputText]}/>
           </View>
          
     </View>
