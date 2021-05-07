@@ -15,6 +15,8 @@ import { useState } from 'react';
 import AddJobModal from '../../components/AddJobModal/AddJobModal';
 import AddJobButton from '../../components/AddJobButton/AddJobButton';
 import JobPost from '../../components/JobPost/JobPost';
+import { employeeSelector } from '../../redux/employeesReducer';
+import { employeeFetchSelector } from '../../redux/employeesFetchReducer';
 
 
 
@@ -29,13 +31,21 @@ export default JobsIndex=()=>{
     alert(searchQuery)
   }
   const curuser=useSelector(userSelector)
+const employees=useSelector(employeeSelector);
+
+const empfetchstatus=useSelector(employeeFetchSelector)
+console.log('EMP',empfetchstatus)
+
+
+console.log('employees', employees)
+  const dispatch = useDispatch();
   const userEmail=curuser.email
   const styles=useThemedStyles(getstyles);
   useEffect(() => {
     dispatch(fetchJobsRequest())
   }, [])
 
-  const dispatch = useDispatch();
+
   
   const jobs=useSelector(jobsSelector);
   

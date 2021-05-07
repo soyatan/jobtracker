@@ -5,6 +5,7 @@ import createFBAuth from "@react-native-firebase/auth";
 import { jobsReducer,fetchJobsRequest, FETCH_JOBS, setJobs, SET_JOBS } from '../jobsReducer';
 import { setEmployees } from '../employeesReducer';
 import { baseURL } from '../../API/jobsURL';
+import { setEmployeesFetchStatus } from '../employeesFetchReducer';
 
 const auth=createFBAuth();
 
@@ -31,7 +32,9 @@ export function* fetchUsers (userId){
 export function* watchEmployeesRequest () {
     const [jobs]=yield all ([take(SET_JOBS)]);;
     //console.log('jobs',jobs)
-    yield all(jobs.payload.jobs.map(item=>fork(fetchUsers,item.userId)));
+    console.log('forking all jobs')
+    yield all(jobs.payload.jobs.map(item=>call(fetchUsers,item.userId)));
+    yield put(setEmployeesFetchStatus('isfetched'))
     
     
 }

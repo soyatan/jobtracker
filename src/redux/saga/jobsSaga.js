@@ -16,7 +16,9 @@ export function* fetchJobs (){
     try{
         const response=yield call(fetch,baseURL+'/applications')
         const data=yield response.json();
+        console.log('succesfully fetched jobs')
         yield put(setJobs(data))
+        console.log('succesfully placed jobs in redux')
     } catch (error) {
         console.log(error)
       }

@@ -13,6 +13,7 @@ import { LocalizationReducer } from './localizationReducer';
 import { ThemeReducer } from './themeReducer';
 import { employeesReducer } from './employeesReducer';
 import { companiesReducer } from './companyReducer';
+import { employeesFetchReducer } from './employeesFetchReducer';
 
 
 
@@ -24,7 +25,10 @@ const combinedReducer=combineReducers({
     localization:LocalizationReducer,
     theme:ThemeReducer,
     employeesState:employeesReducer,
-    companiesState:companiesReducer
+    companiesState:companiesReducer,
+    employeesFetchState:employeesFetchReducer
+            
+
     
 })
 let persistedReducer=combinedReducer;

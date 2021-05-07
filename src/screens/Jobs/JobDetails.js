@@ -45,11 +45,11 @@ const hideMeetingsTouch=()=>{
         style={styles.jobcontainer}
         showsVerticalScrollIndicator={false}>
 
-         <JobInput title={'Applied As:'} text={job.userId}/>
+         <JobInput title={'Applied As:'} text={'ahmet'}/>
 
          <JobInput title={'Job Title:'} text={job.title}/>
 
-         <JobInput title={'Company Name:'} text={job.companyId}/>
+         <JobInput title={'Company Name:'} text={'kampiniy'}/>
          <JobInput title={'Location:'} text={job.location}/>
          <JobInput title={'Job Description:'} text={job.content}/>
 

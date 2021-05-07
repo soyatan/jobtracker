@@ -5,6 +5,7 @@ export const employeeSelector=state=>state.employeesState;
 
 export const SET_EMPLOYEES='employees/set';
 export const GET_EMPLOYEES='employees/get';
+export const ADD_EMPLOYEES='employees/add';
 export const FETCH_EMPLOYEES='employees/fetch';
 
 
@@ -24,6 +25,14 @@ export const getEmployees = () =>{
     }
 }
 
+export const addEmployees = () =>{
+    return{
+        type: ADD_EMPLOYEES,
+      
+    }
+}
+
+
 
 export const fetchEmployeesRequest = () =>{
     return{
@@ -38,6 +47,11 @@ export const employeesReducer =(state=INITIAL_STATE,action)=>{
                 return state
             }
             else return [...state,action.payload.users];
+        case ADD_EMPLOYEES:
+            if(state.some(item=>item.id===action.payload.users.id)){
+                return state
+            }
+            //else return [...state,action.payload.users];
             
     default:
         return state;

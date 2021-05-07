@@ -7,7 +7,7 @@ import { baseURL } from '../../API/jobsURL';
 
 const auth=createFBAuth();
 
-
+/*
 export function* addUserRequestz({payload}) {
 
     console.log('user',payload.user)
@@ -45,7 +45,7 @@ export function* addUserRequestz({payload}) {
     
 }
 
-
+*/
 
 export function* resetRequest({payload}){
     
@@ -150,9 +150,6 @@ export function* watchForgotPWSaga () {
 }
 
 
-export function* watchAddUserSaga () {
-    yield takeEvery(ADD_USER,addUserRequestz);
-}
 
 
 
@@ -160,8 +157,8 @@ const userSaga=[
     fork(watchSignUpSaga),
     fork(watchLogoutsaga),
     fork(watchLoginSaga),
-    fork(watchForgotPWSaga),
-    fork(watchAddUserSaga)
+    fork(watchForgotPWSaga)
+    
 ];
 
 export default userSaga;

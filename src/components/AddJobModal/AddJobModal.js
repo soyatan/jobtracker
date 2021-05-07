@@ -51,7 +51,15 @@ const[modal2Visible,setModal2Visible]=useState(false)
   const navigation = useNavigation();
   
   const curuser=useSelector(userSelector)
+
+
   const userEmail=curuser.email
+
+  
+  const users=useSelector(employeeSelector)
+  
+  //const currentUser=users.find(item=>item.id===job.userId)
+
   
   const newJob={title:title,content:content,user:userEmail,location:location,appdate:appdate,companyname:companyName,URL:URL,meetings:meetings}
   //console.log(newJob)

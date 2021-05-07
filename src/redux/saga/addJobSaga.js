@@ -36,7 +36,7 @@ export function* addJob ({job}){
     } catch (error) {
         console.log(error)
       }
-      yield put(fetchJobsRequest())
+      yield put(addJobr(job))
      
 }
 

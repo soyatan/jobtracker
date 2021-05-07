@@ -18,8 +18,13 @@ export default JobPost=({data})=>{
   const job=data.item;
   const navigation = useNavigation();
   const[isDelete,setIsDelete]=useState(false)
-  const users=useSelector(employeeSelector)
+
+
   const companies=useSelector(companiesSelector)
+
+  
+  const users=useSelector(employeeSelector)
+  
   const currentUser=users.find(item=>item.id===job.userId)
   const currentCompany=companies.find(item=>item.id===job.companyId)
   const colors=useThemedColors();
