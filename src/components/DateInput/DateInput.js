@@ -19,23 +19,24 @@ export default DateInput=({title,text,state})=>{
 const [date, setDate] = useState(new Date(text));
 const [mode, setMode] = useState('date');
 const [show, setShow] = useState(false);
-
+//console.log(date)
 const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
-    setDate(currentDate);
-    state(date)
+    
+    state(currentDate)
   };
   const showMode = (currentMode) => {
     setShow(true);
     setMode(currentMode);
   };
+  //console.log('date',date)
+  //console.log('text',text)
   const showDatepicker = () => {
     showMode('date');
   };
-  const formdate=moment(date).format("DD-MM-YYYY")
   
-
+  
 
 
  
@@ -52,15 +53,15 @@ const onChange = (event, selectedDate) => {
   {show && (
         <DateTimePicker
           testID="dateTimePicker"
-          value={date}
+          value={new Date(text)}
           mode={mode}
           is24Hour={true}
           display={'spinner'}
           display="default"
           onChange={onChange}
         />)}
-        <TouchableOpacity onPress={showDatepicker}>
-          <Text style={styles.jobtext}>{formdate}</Text>
+        <TouchableOpacity style={styles.dateinputcontainer} onPress={showDatepicker}>
+          <Text style={styles.jobtext}>{(moment(text)).format("DD-MM-YYYY")}</Text>
        </TouchableOpacity>
     </View>
      

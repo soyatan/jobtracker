@@ -29,6 +29,11 @@ export default styles=(Colors)=>StyleSheet.create({
     textred:{
         color:'red',
     },
+    validationcontainer:{
+        textAlignVertical:'center',
+        justifyContent:'center',
+        height:h*0.02,
+    }
 
 })
 

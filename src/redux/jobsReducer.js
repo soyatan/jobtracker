@@ -6,8 +6,10 @@ export const jobsSelector=state=>state.jobsState;
 export const SET_JOBS='jobs/set';
 export const ADD_JOB='jobs/add';
 export const ADD_JOB_REQUEST='jobs/add/request';
+export const UPDATE_JOB_REQUEST='jobs/update/request';
 export const DELETE_JOB_REQUEST='jobs/delete/request';
 export const FETCH_JOBS='jobs/fetch';
+export const DELETE_JOB='jobs/delete';
 
 
 export const setJobs = (jobs) =>{
@@ -19,11 +21,21 @@ export const setJobs = (jobs) =>{
     }
 }
 
-export const addJobRequest = (job) =>{
+export const addJobRequest = (job,companyname) =>{
     return{
         type: ADD_JOB_REQUEST,
         payload:{
-            job
+            job,companyname
+        }
+    }
+}
+
+export const updateJobRequest = (job,companyname,id) =>{
+    
+    return{
+        type: UPDATE_JOB_REQUEST,
+        payload:{
+            job,companyname,id
         }
     }
 }
@@ -54,12 +66,25 @@ export const fetchJobsRequest = () =>{
     }
 }
 
+export const deleteJob = (id) =>{
+    return{
+        type: DELETE_JOB,
+        payload:{
+            id
+        }
+    }
+}
+
 export const jobsReducer =(state=INITIAL_STATE,action)=>{
     switch(action.type){
         case SET_JOBS:
             return action.payload.jobs;
         case ADD_JOB:
-            return [...state,action.payload.job];
+            const newAddedState=[...state,action.payload.job]
+            return newAddedState
+        case DELETE_JOB:
+            const newState=state.filter(item=>item.id!==action.payload.id)
+            return newState
             
     default:
         return state;

@@ -7,9 +7,11 @@ import React, { useEffect, useState } from 'react'
 import { TextInput } from 'react-native-gesture-handler';
 import { useThemedStyles } from '../../modules/Theming';
 import getstyles from './styles'  
+import {WebLink,MailLink,MapLink} from '../../components/LinkButtons/WebLink'
 
+export default JobInput=({title,text,state,editable,linktype,url})=>{
+console.log('Jobinput urlsi',url)
 
-export default JobInput=({title,text,state,editable})=>{
 useEffect(() => {
     setValue(text)
    
@@ -25,9 +27,11 @@ useEffect(() => {
 
     return(
         <View style={styles.jobinputcontainer}> 
+       
         <Text  style={styles.jobtitletext}>{title}</Text>
        
-   
+        <View style={styles.jobinputcontainerinside}> 
+        <View style={styles.jobinputtextcontainer}> 
          <TextInput
          returnKeyType="done"
          editable={editable}
@@ -38,6 +42,13 @@ useEffect(() => {
         multiline={true}
         blurOnSubmit={true}
         onEndEditing={()=>sendstate()}/>
+         </View>
+         {linktype==='URL'?<View style={styles.jobinputlinkcontainer}><WebLink url={url}/></View> 
+         : 
+         linktype==='EMAIL'? <View style={styles.jobinputlinkcontainer}><MailLink url={url}/></View> : linktype==='MAP'? 
+         <View style={styles.jobinputlinkcontainer}><MapLink url={url}/></View> 
+         :null }
+        </View>
         <TouchableOpacity
         onPress={()=>{
             setValue(null);
@@ -54,7 +65,7 @@ useEffect(() => {
             :null}
         </TouchableOpacity>
         
-
+       
         </View>
      
     )

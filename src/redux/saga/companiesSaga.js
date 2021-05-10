@@ -5,22 +5,24 @@ import createFBAuth from "@react-native-firebase/auth";
 import { jobsReducer,fetchJobsRequest, FETCH_JOBS, setJobs, SET_JOBS } from '../jobsReducer';
 import { setEmployees } from '../employeesReducer';
 import { baseURL } from '../../API/jobsURL';
-import { setComapnies } from '../companyReducer';
+import { FETCH_COMPANIES, setComapnies } from '../companyReducer';
 
 
 
 
-export function* fetchCompanies (companyId){
+export function* fetchCompanies (){
     
     //console.log('welcome to fetchcompanies');
     //console.log('companyId geldi', companyId)
 
-    
+    console.log('fetchcompany02')
     try{
-        const response=yield call(fetch,baseURL+'/companies/'+companyId)
+        const response=yield call(fetch,baseURL+'/companies')
+        console.log('fetchcompany03')
         const data=yield response.json();
         //console.log('user is',data)
         yield put(setComapnies(data))
+        console.log('companies fetched and set')
 
     } catch (error) {
         console.log(error)
@@ -29,9 +31,10 @@ export function* fetchCompanies (companyId){
 
 
 export function* watchCompaniesRequest () {
-    const [jobs]=yield all ([take(SET_JOBS)]);;
-    //console.log('jobs',jobs)
-    yield all(jobs.payload.jobs.map(item=>fork(fetchCompanies,item.companyId)));
+    yield takeEvery(FETCH_COMPANIES,fetchCompanies)
+    
+    
+    //yield call(fetchCompanies);
     
     
 }

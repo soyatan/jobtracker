@@ -4,6 +4,8 @@ const INITIAL_STATE = [];
 export const companiesSelector=state=>state.companiesState;
 
 export const SET_COMPANIES='companies/set';
+export const ADD_COMPANY='companies/add';
+export const ADD_COMPANY_REQUEST='companies/add/request';
 export const FETCH_COMPANIES='companies/fetch';
 
 
@@ -16,7 +18,24 @@ export const setComapnies = (companies) =>{
     }
 }
 
+export const addCompanyRequest=(companyname)=>{
+    return{
+        type: ADD_COMPANY_REQUEST,
+        payload:{
+            companyname
+        }
+    }
+}
 
+
+export const addCompany = (company) =>{
+    return{
+        type: ADD_COMPANY,
+        payload:{
+            company
+        }
+    }
+}
 
 export const fetchCompaniesRequest = () =>{
     return{
@@ -27,10 +46,9 @@ export const fetchCompaniesRequest = () =>{
 export const companiesReducer =(state=INITIAL_STATE,action)=>{
     switch(action.type){
         case SET_COMPANIES:
-            if(state.some(item=>item.id===action.payload.companies.id)){
-                return state
-            }
-            else return [...state,action.payload.companies];
+            
+                return action.payload.companies
+           
             
     default:
         return state;

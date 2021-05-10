@@ -7,7 +7,7 @@ import getstyles from './styles'
 
 
 
-export default AuthInput=({label,secureTextEntry,onChangeText,labelValue,keyboardType})=>{
+export default AuthInput=({label,secureTextEntry,onChangeText,labelValue,keyboardType,onEndEditing})=>{
 
   
   const colors=useThemedColors();
@@ -26,6 +26,7 @@ export default AuthInput=({label,secureTextEntry,onChangeText,labelValue,keyboar
       labelValue={labelValue}
       secureTextEntry={secureTextEntry}
       keyboardType={keyboardType}
+      onEndEditing={onEndEditing}
   />
 </View>
   )

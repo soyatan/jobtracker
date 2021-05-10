@@ -6,22 +6,33 @@ import { jobsReducer,fetchJobsRequest, FETCH_JOBS, setJobs, SET_JOBS } from '../
 import { setEmployees } from '../employeesReducer';
 import { baseURL } from '../../API/jobsURL';
 import { setEmployeesFetchStatus } from '../employeesFetchReducer';
+import { fetchCompaniesRequest } from '../companyReducer';
 
 const auth=createFBAuth();
 
 
-
-export function* fetchUsers (userId){
+export function* josSetandThenWhat(action){
+    //console.log(action.payload.jobs)
+    yield call(fetchUsers,)
+    yield put(fetchCompaniesRequest())
+    
+}
+export function* fetchUsers (){
     
     //console.log('welcome to fetchusers');
     //console.log('userId geldi', userId)
-
+    console.log('fetchemployee02')
     
     try{
-        const response=yield call(fetch,baseURL+'/users/'+userId)
-        const data=yield response.json();
-        //console.log('user is',data)
+        const response=yield call(fetch,baseURL+'/users/')
+        console.log('fetchemployee03')
+        const data=yield apply(response,response.json);
+        //console.log('users are',data)
+        console.log('fetchemployee04')
         yield put(setEmployees(data))
+        console.log('employees fetched and set to redux')
+        yield put(setEmployeesFetchStatus('isfetched'))
+        
 
     } catch (error) {
         console.log(error)
@@ -30,11 +41,10 @@ export function* fetchUsers (userId){
 
 
 export function* watchEmployeesRequest () {
-    const [jobs]=yield all ([take(SET_JOBS)]);;
+    yield takeLatest(SET_JOBS,josSetandThenWhat);
     //console.log('jobs',jobs)
-    console.log('forking all jobs')
-    yield all(jobs.payload.jobs.map(item=>call(fetchUsers,item.userId)));
-    yield put(setEmployeesFetchStatus('isfetched'))
+    console.log('fetchemployee01')
+
     
     
 }

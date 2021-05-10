@@ -16,7 +16,7 @@ export default styles=(Colors)=>StyleSheet.create({
     searchbarcontainer:{
         paddingLeft:w*0.03,
         paddingRight:w*0.03,
-        paddingBottom:h*0.01,
+        
         margin:w*0.01,
         flex:1,
         
@@ -88,6 +88,26 @@ export default styles=(Colors)=>StyleSheet.create({
     },
 
 
+    modalBottom:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'flex-end',
+        alignContent:'flex-end',
+        alignSelf:'flex-end',
+        marginTop:h*0.01,        
+         
+     },
+     modalbutton:{
+        backgroundColor:Colors[cn.jobs.modalbuttonbackground],
+         alignSelf:'stretch',
+         flex:1,
+         justifyContent:'center',
+         alignItems:'center',
+         margin:h*0.01,
+         borderRadius:15,
+         borderWidth:1,
+         height:h*0.05
+        },
 
 
 
@@ -133,6 +153,10 @@ export default styles=(Colors)=>StyleSheet.create({
         backgroundColor:Colors[cn.jobs.background],
         
         
+    },
+    text:{
+        color:'black',
+        fontWeight:'bold'
     },
     
     meeting:{

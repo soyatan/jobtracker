@@ -11,11 +11,13 @@ import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 import { deleteJobRequest } from '../../redux/jobsReducer';
 import { useDispatch } from 'react-redux';
+import moment from "moment";
+
 
 
 export default JobPost=({data})=>{
   const styles= useThemedStyles(getstyles)
-  const job=data.item;
+  
   const navigation = useNavigation();
   const[isDelete,setIsDelete]=useState(false)
 
@@ -25,8 +27,8 @@ export default JobPost=({data})=>{
   
   const users=useSelector(employeeSelector)
   
-  const currentUser=users.find(item=>item.id===job.userId)
-  const currentCompany=companies.find(item=>item.id===job.companyId)
+  const currentUser=users.find(item=>item.id===data.item.userId)
+  const currentCompany=companies.find(item=>item.id===data.item.companyId)
   const colors=useThemedColors();
   const changeDeleteButton=()=>{
     if (isDelete){
@@ -36,9 +38,15 @@ export default JobPost=({data})=>{
   }
 const dispatch = useDispatch();
 const deleteJobRequestr=(id)=>{
-  dispatch(deleteJobRequest(id))
+  dispatch(deleteJobRequest(id));
+  setIsDelete(false)
 
 }
+
+
+
+const formdate=(date)=>{return moment(date).format("DD-MM-YYYY")}
+//console.log(job.appdate)
 
   return(
 
@@ -49,19 +57,19 @@ const deleteJobRequestr=(id)=>{
             <FontAwesome name='user-circle-o' size={20} style={styles.portraiticon}/>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.blogmiddle} onPress={()=>navigation.navigate('Job Details',{jobId:job.id})} onLongPress={()=>changeDeleteButton()}>
+          <TouchableOpacity style={styles.blogmiddle} onPress={()=>navigation.navigate('Job Details',{jobId:data.item.id,companyname:currentCompany,currentUser:currentUser})} onLongPress={()=>changeDeleteButton()}>
           {!currentCompany?  <ActivityIndicator size="small" color={colors[colorNames.header.inputText]}/> :
             <Text style={styles.blogtitletext} numberOfLines={1}>{currentCompany.name}</Text> }
-            <Text style={styles.blogtitletext} >{job.title}</Text>
+            <Text style={styles.blogtitletext} >{data.item.title}</Text>
             
-            {currentUser?
-            <Text style={styles.jobtext}>{currentUser.username} on 9.34pm, 24/08/2011</Text> 
+            {currentUser&&data.item?
+            <Text style={styles.jobtext}>{currentUser.username} on {formdate(data.item.appdate)}</Text> 
             :
             <ActivityIndicator size="small" color={colors[colorNames.header.inputText]}/>}
 
           </TouchableOpacity>
-          {isDelete?
-          <TouchableOpacity style={styles.blogleft} onPress={()=>deleteJobRequestr(job.id)}>
+          {isDelete&&data.item?
+          <TouchableOpacity style={styles.blogleft} onPress={()=>deleteJobRequestr(data.item.id)}>
           <FontAwesome name='trash' size={24} style={styles.portraiticon}/>
         </TouchableOpacity>  : null
 

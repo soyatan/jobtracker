@@ -30,6 +30,15 @@ export default styles=(Colors)=>StyleSheet.create({
         justifyContent:'center',
         
     },
+    dateinputcontainer:{
+        backgroundColor:Colors[cn.jobs.background],
+        margin:5,
+        padding:8,
+        justifyContent:'center',
+        borderRadius:15,
+        textAlignVertical:'center',
+
+    },
     blog:{
         backgroundColor:Colors[cn.jobs.background],
         borderRadius:15,
@@ -113,11 +122,15 @@ export default styles=(Colors)=>StyleSheet.create({
         
     },
     jobtext:{
-        textAlignVertical:'center',
-       
         color:Colors[cn.jobs.jobtextcolor2],
-        fontSize:15,
-        borderRadius:5,
+        backgroundColor:Colors[cn.jobs.jobinputbackground],
+        borderBottomWidth:0.2,
+        paddingBottom:5,
+        paddingLeft:3,
+        marginBottom:5,
+        fontSize:14,
+        borderRadius:10,
+        opacity:0.5,
         
     },
     jobtitletext:{

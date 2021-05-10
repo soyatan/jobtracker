@@ -6,7 +6,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { colorNames, useThemedColors, useThemedStyles } from '../../modules/Theming';
 import { employeeSelector } from '../../redux/employeesReducer';
 import { useSelector } from 'react-redux';
-import { companiesSelector, setComapnies } from '../../redux/companyReducer';
+import { addCompany, addCompanyRequest, companiesSelector, setComapnies } from '../../redux/companyReducer';
 import { useNavigation } from '@react-navigation/native';
 import MeetingInput from '../MeetingInput/MeetingInput';
 import JobInput from '../JobInput/JobInput';
@@ -25,14 +25,15 @@ export default AddJobModal=({modalVisible,setModalVisible,data})=>{
    
   }, [modal2Visible,modalVisible])
 
-  const[user,setUser]=useState();
+  const[userId,setUserId]=useState();
   const[title,setTitle]=useState();
   const[content,setContent]=useState();
   const[location,setLocation]=useState();
-  const[appdate,setAppdate]=useState(Date.now());
+  const[appdate,setAppdate]=useState((new Date()).toISOString());
   const[companyName,setCompanyName]=useState();
   const[URL,setURL]=useState();
   const[meetings,setMeetings]=useState([{id:1,meetingnotes:'very nice meeting',date:Date.now()}]);
+  
   /*console.log(meetings)
   console.log('appdate',appdate)
   console.log('user',user)
@@ -51,22 +52,45 @@ const[modal2Visible,setModal2Visible]=useState(false)
   const navigation = useNavigation();
   
   const curuser=useSelector(userSelector)
-
+  
 
   const userEmail=curuser.email
 
   
   const users=useSelector(employeeSelector)
+
+  const companies=useSelector(companiesSelector)
+  //console.log(companies)
   
-  //const currentUser=users.find(item=>item.id===job.userId)
+
+useEffect(() => {
+  if (users && curuser){
+    try{
+    let currentUser=users.find(item=>item.username===curuser.email)
+    if(currentUser){
+    setUserId(currentUser.id);
+    }}
+  
+   catch (error) {
+    console.log(error)
+  }
+ 
+}}, [users])
+  
+ 
+  
+ 
+
+  //
+
 
   
-  const newJob={title:title,content:content,user:userEmail,location:location,appdate:appdate,companyname:companyName,URL:URL,meetings:meetings}
+  const newJob={title:title,content:content,userId:userId,location:location,appdate:appdate,URL:URL,meetings:meetings}
   //console.log(newJob)
     
   const submitNewJob =()=>{
-
-    dispatch(addJobRequest(newJob));
+    
+    dispatch(addJobRequest(newJob,companyName))
     setModalVisible(false)
 
 
@@ -88,7 +112,7 @@ const[modal2Visible,setModal2Visible]=useState(false)
       <ScrollView style={styles.addjobcontainer}
       showsVerticalScrollIndicator={false}>
 
-       <JobInput title={'Applied As:'} text={userEmail} state={setUser} editable={false}/>
+       <JobInput title={'Applied As:'} text={userEmail} state={setUserId} editable={false}/>
 
        <JobInput title={'Job Title:'}text={title} state={setTitle}/>
 

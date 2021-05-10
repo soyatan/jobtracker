@@ -1,10 +1,12 @@
 import { all } from 'redux-saga/effects';
+import addCompanySaga from './addCompanySaga.js';
 import addEmployeesSaga from './addEmployeesSaga.js';
 import addJobSaga from './addJobSaga';
 import companiesSaga from './companiesSaga';
 import deleteJobSaga from './deleteJobSaga copy';
 import employeesSaga from './employeesSaga';
 import jobsSaga from './jobsSaga';
+import updateJobSaga from './updateJobSaga.js';
 
 import userSaga from './userSaga';
 
@@ -21,7 +23,10 @@ export default function* root() {
         ...companiesSaga,
         ...addJobSaga,
         ...deleteJobSaga,
-        ...addEmployeesSaga
+        ...addEmployeesSaga,
+        ...addCompanySaga,
+        ...updateJobSaga
+        
     
     ])
 };

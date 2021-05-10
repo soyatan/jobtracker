@@ -10,15 +10,18 @@ const auth=createFBAuth();
 
 
 export function* fetchJobs (){
-    
+    console.log('fetch01')
     
     
     try{
         const response=yield call(fetch,baseURL+'/applications')
-        const data=yield response.json();
-        console.log('succesfully fetched jobs')
+        console.log('fetch02')
+        const data=yield apply(response,response.json);
+        console.log('fetch03')
+        //console.log('succesfully fetched jobs')
         yield put(setJobs(data))
-        console.log('succesfully placed jobs in redux')
+        console.log('fetchjobs completed and set them into redux.')
+        //console.log('succesfully placed jobs in redux')
     } catch (error) {
         console.log(error)
       }
@@ -26,7 +29,10 @@ export function* fetchJobs (){
 
 
 export function* watchFetchJobsRequest () {
-    yield takeEvery(FETCH_JOBS,fetchJobs);
+    
+    yield takeLatest(FETCH_JOBS,fetchJobs);
+    
+
 }
 
 

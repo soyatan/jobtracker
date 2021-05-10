@@ -4,6 +4,7 @@ import firebase from '@react-native-firebase/app';
 import createFBAuth from "@react-native-firebase/auth";
 import { employeeSelector } from '../employeesReducer';
 import { baseURL } from '../../API/jobsURL';
+import { useNavigation } from '@react-navigation/native';
 
 const auth=createFBAuth();
 
@@ -50,7 +51,7 @@ export function* addUserRequestz({payload}) {
 export function* resetRequest({payload}){
     
     const {email} = payload;
-    console.log(email)
+    //console.log(email)
     
     try{
         
@@ -80,7 +81,7 @@ export function* signUpRequest ({payload}){
         
         yield call(signUp,email, password);
         let user = auth.currentUser;
-        console.log('user',user)
+        //console.log('user',user)
 
         yield put(setUser(user))
     } catch (error) {
@@ -100,7 +101,9 @@ export function* logoutRequest (){
         }
         yield call(logout);
 
-        yield put(setUser(null))    
+        yield put(setUser(null)) 
+        const navigation=useNavigation()
+        yield call(navigation.navigate('Auth'))
     } catch (error) {
         //const error_message = { code: error.code, message: error.message };
         console.log(error)

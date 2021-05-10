@@ -3,18 +3,18 @@ import { FORGOT_PASSWORD, LOGIN_REQUEST, LOGOUT_REQUEST, setUser, SET_USER, SET_
 import firebase from '@react-native-firebase/app';  
 import createFBAuth from "@react-native-firebase/auth";
 import { jobsReducer,fetchJobsRequest, FETCH_JOBS, setJobs, SET_JOBS } from '../jobsReducer';
-import { employeeSelector, setEmployees } from '../employeesReducer';
+import { addEmployees, employeeSelector, setEmployees } from '../employeesReducer';
 import { baseURL } from '../../API/jobsURL';
 import { SET_EMPLOYEEFETCHSTATUS } from '../employeesFetchReducer';
 
 
 
 export function* checkUserInEmpList (){
-  
+    console.log('adduser02')
     const curUser=yield select(userSelector);
     const curUsers=yield select(employeeSelector)
-    console.log('current user is',curUser)
-    console.log('current users are',curUsers)
+    //console.log('current user is',curUser)
+    //console.log('current users are',curUsers)
     if (curUser) {
         if (curUsers.some(item=>item.username===curUser.email)){
             console.log('user exists in employees list')}
@@ -30,17 +30,20 @@ export function* checkUserInEmpList (){
                     body:JSON.stringify(newuser)
                 })
                 
-                //yield put(addJobr(job))
+                //yield put(addEmployees(curUser.email))
                 //const data=yield response.json();
                 //yield put(setJobs(data))
+                console.log(newuser,'has been added')
                 
             } catch (error) {
                 console.log(error)
               }
               
         }
+
         
     }
+    console.log('adduser03')
 
     /*
     try{
@@ -58,7 +61,7 @@ export function* checkUserInEmpList (){
 
 export function* watchaddEmployeesRequest () {
     const {payload}=yield take(SET_EMPLOYEEFETCHSTATUS);
-    
+    console.log('adduser01')
     if (payload.status==='isfetched'){
     yield call(checkUserInEmpList)}
     

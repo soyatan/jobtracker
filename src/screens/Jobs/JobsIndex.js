@@ -1,5 +1,5 @@
-import React,{useEffect} from 'react'
-import { View,Text, TouchableOpacity,FlatList } from 'react-native'
+import React,{useEffect,useCallback} from 'react'
+import { View,Text, TouchableOpacity,FlatList,Linking,Alert, Button} from 'react-native'
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -30,24 +30,26 @@ export default JobsIndex=()=>{
   const submitSearch=()=>{
     alert(searchQuery)
   }
-  const curuser=useSelector(userSelector)
+const curuser=useSelector(userSelector)
 const employees=useSelector(employeeSelector);
 
+
 const empfetchstatus=useSelector(employeeFetchSelector)
-console.log('EMP',empfetchstatus)
+//console.log('EMP',empfetchstatus)
 
-
-console.log('employees', employees)
+const jobs=useSelector(jobsSelector);
+//console.log('employees', employees)
   const dispatch = useDispatch();
   const userEmail=curuser.email
+  
   const styles=useThemedStyles(getstyles);
   useEffect(() => {
     dispatch(fetchJobsRequest())
   }, [])
 
 
+
   
-  const jobs=useSelector(jobsSelector);
   
   const colors=useThemedColors();
   const [modalVisible, setModalVisible] = useState(false);
@@ -73,6 +75,7 @@ console.log('employees', employees)
          selectionColor={'white'}
          />        
       </View>
+  
 
       <View style={styles.blogcontainer}>
 
@@ -80,6 +83,7 @@ console.log('employees', employees)
          {jobs?
 
          <FlatList 
+         keyExtractor={(item,index)=>index}
           showsVerticalScrollIndicator={false}
             data={jobs}
             renderItem={item=>
@@ -97,4 +101,4 @@ console.log('employees', employees)
          
     </View>
   )
-}
+          }

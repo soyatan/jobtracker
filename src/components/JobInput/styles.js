@@ -12,6 +12,8 @@ export default styles=(Colors)=>StyleSheet.create({
         justifyContent:'center',
         borderRadius:15,
         textAlignVertical:'center',
+
+        
         
     },
     jobtext:{
@@ -22,6 +24,7 @@ export default styles=(Colors)=>StyleSheet.create({
         borderBottomWidth:0.2,
         paddingBottom:5,
         marginBottom:5,
+        marginTop:3,
         fontSize:14,
         borderRadius:10,
         opacity:0.5,
@@ -29,13 +32,34 @@ export default styles=(Colors)=>StyleSheet.create({
         
         
     },
+
+    jobinputlinkcontainer:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    jobinputtextcontainer:{
+     
+        flex:9
+
+    },
+    
     jobtitletext:{
         textAlignVertical:'center',
         fontWeight:'bold',
         fontSize:16,
         color:Colors[cn.jobs.jobtextcolor],
         
+        
     },
+    jobinputcontainerinside:{
+        flexDirection:'row',
+        
+        alignContent:'stretch',
+        justifyContent:'space-between'
+        
+        
+    }
     
 })
 

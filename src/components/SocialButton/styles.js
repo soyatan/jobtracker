@@ -7,7 +7,8 @@ export default styles=(Colors)=>StyleSheet.create({
     
     text:{
         color:'black',
-        fontWeight:'bold'
+        fontWeight:'bold',
+        fontSize:w*0.03,
     },
     socialbutton:{
 
