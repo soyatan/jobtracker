@@ -23,13 +23,37 @@ import { employeeFetchSelector } from '../../redux/employeesFetchReducer';
 export default JobsIndex=()=>{
 
   const [searchQuery,setSearchQuery]=useState();
+  const [data, setData] = useState(jobs)
 
   const onChangeSearch=(value)=>{
     setSearchQuery(value)
+    if(!value){setData(jobs)}
   }
   const submitSearch=()=>{
+    if(searchQuery) {
+    const newList=jobs.filter(item=>{
+      const ITEMTITLE=item.title? 
+                  item.title.toUpperCase() 
+                  : ''.toUpperCase();
+      const SEARCHDATA=searchQuery.toUpperCase();
+      return ITEMTITLE.indexOf(SEARCHDATA)>-1;
+     });
+     setData(newList)
+    }
+    else {
+      setData(jobs)
+
+
+    }
+  }
+    
+  
+
+  const clearSearch=()=>{
     alert(searchQuery)
   }
+
+
 const curuser=useSelector(userSelector)
 const employees=useSelector(employeeSelector);
 
@@ -46,6 +70,9 @@ const jobs=useSelector(jobsSelector);
   useEffect(() => {
     dispatch(fetchJobsRequest())
   }, [])
+  useEffect(() => {
+    setData(jobs)
+  }, [jobs])
 
 
 
@@ -85,7 +112,7 @@ const jobs=useSelector(jobsSelector);
          <FlatList 
          keyExtractor={(item,index)=>index}
           showsVerticalScrollIndicator={false}
-            data={jobs}
+            data={data}
             renderItem={item=>
               <JobPost data={item}/>
             }
