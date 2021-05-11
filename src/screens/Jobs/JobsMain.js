@@ -5,34 +5,34 @@ import JobsIndex from './JobsIndex';
 
 import JobDetails from './JobDetails';
 
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import FilterModal from '../../components/FilterModal/FilterModal';
+
+import getstyles from './styles';
+import { useThemedStyles } from '../../modules/Theming';
 
 export default JobsMain=()=>{
-  
-  const Jobs=createStackNavigator();
+  const styles=useThemedStyles(getstyles);  
+  const Jobs=createDrawerNavigator();
         
 
   return(
     
     <Jobs.Navigator
-      screenOptions={{
-        headerStyle:{
-          backgroundColor:'#121212',
-          borderBottomColor:'white',
-          borderBottomWidth:2,
-        },
-        headerTitleStyle:{
-          color:'white',
-          alignSelf:'center',
-        },
-        headerShown:false,
-      }}
+      drawerPosition={'right'}
+      drawerStyle={styles.drawer}
+      drawerContent={()=><FilterModal/>}
+      screenOptions={{  headerShown:false, }}
     >
+          
         <Jobs.Screen name="Jobs Index"  component={JobsIndex}  />
+        
         
         <Jobs.Screen 
         name="Job Details"  
         component={JobDetails}
         />
+         
 
     </Jobs.Navigator>
 

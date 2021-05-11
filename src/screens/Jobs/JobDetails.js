@@ -39,7 +39,7 @@ export default JobDetails =({route,navigation})=>{
 const dispatch = useDispatch()
 
 const newJob={title:title,content:content,userId:userId,location:location,appdate:appdate,URL:URL,meetings:meetings}
-console.log(newJob)
+//console.log(newJob)
 const updateJob =()=>{
     
   dispatch(updateJobRequest(newJob,companyName,job.id))

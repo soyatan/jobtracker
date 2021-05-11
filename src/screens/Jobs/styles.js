@@ -17,16 +17,34 @@ export default styles=(Colors)=>StyleSheet.create({
         paddingLeft:w*0.03,
         paddingRight:w*0.03,
         
+        justifyContent:'space-between',
         margin:w*0.01,
         flex:1,
+        flexDirection:'row',
+        alignItems:'center',
+        alignContent:'center'
+        
         
 
     },
     searchbar:{
         backgroundColor:Colors[cn.searchbar.background],
+        
         borderRadius:15,
+        flex:6
         
     },
+
+    filtercontainer:{
+        flex:1,
+        alignItems:'center',
+        marginLeft:5,
+        
+        //backgroundColor:Colors[cn.searchbar.filterbackground],
+        
+
+    },
+
 
     blogcontainer:{
         margin:h*0.01,
@@ -83,8 +101,8 @@ export default styles=(Colors)=>StyleSheet.create({
         fontSize:w*0.04
     },
     meetingicon:{
-        width:w*0.1,
-        height:w*0.08,
+        width:w*0.05,
+        height:w*0.05,
     },
 
 
@@ -134,6 +152,13 @@ export default styles=(Colors)=>StyleSheet.create({
 
         backgroundColor:Colors[cn.jobs.background],
         margin:5,
+    },
+    drawer:{
+
+        backgroundColor:Colors[cn.drawer.background],
+        borderRadius:10,
+        opacity:0.9,
+        
     },
     jobcompany:{
         backgroundColor:Colors[cn.jobs.background],

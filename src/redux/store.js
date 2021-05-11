@@ -14,6 +14,7 @@ import { ThemeReducer } from './themeReducer';
 import { employeesReducer } from './employeesReducer';
 import { companiesReducer } from './companyReducer';
 import { employeesFetchReducer } from './employeesFetchReducer';
+import { filteredJobsReducer } from './filteredJobsReducer';
 
 
 
@@ -26,7 +27,8 @@ const combinedReducer=combineReducers({
     theme:ThemeReducer,
     employeesState:employeesReducer,
     companiesState:companiesReducer,
-    employeesFetchState:employeesFetchReducer
+    employeesFetchState:employeesFetchReducer,
+    filteredJobsState:filteredJobsReducer,
             
 
     

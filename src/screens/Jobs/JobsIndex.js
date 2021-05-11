@@ -17,10 +17,15 @@ import AddJobButton from '../../components/AddJobButton/AddJobButton';
 import JobPost from '../../components/JobPost/JobPost';
 import { employeeSelector } from '../../redux/employeesReducer';
 import { employeeFetchSelector } from '../../redux/employeesFetchReducer';
+import FilterButton from '../../components/FilterButton/FilterButton';
+import FilterModal from '../../components/FilterModal/FilterModal';
+import { useNavigation } from '@react-navigation/native';
+import { filteredJobsSelector } from '../../redux/filteredJobsReducer';
 
 
 
-export default JobsIndex=()=>{
+
+export default JobsIndex=({route})=>{
 
   const [searchQuery,setSearchQuery]=useState();
   const [data, setData] = useState(jobs)
@@ -55,14 +60,10 @@ export default JobsIndex=()=>{
 
 
 const curuser=useSelector(userSelector)
-const employees=useSelector(employeeSelector);
-
-
-const empfetchstatus=useSelector(employeeFetchSelector)
-//console.log('EMP',empfetchstatus)
 
 const jobs=useSelector(jobsSelector);
-//console.log('employees', employees)
+const filterStatus=useSelector(filteredJobsSelector)
+
   const dispatch = useDispatch();
   const userEmail=curuser.email
   
@@ -70,22 +71,39 @@ const jobs=useSelector(jobsSelector);
   useEffect(() => {
     dispatch(fetchJobsRequest())
   }, [])
+
   useEffect(() => {
     setData(jobs)
   }, [jobs])
 
+  useEffect(() => {
+    if(filterStatus==='FILTERED')
+    {setData(jobs)}
+    else if(filterStatus==='NO FILTER') {
+      dispatch(fetchJobsRequest())
+    }
 
+  }, [filterStatus])
 
+  const navigation = useNavigation();
+  console.log(navigation)
+  
+const showFilter = () => {
+  navigation.toggleDrawer()
+}
+console.log('jobs',jobs)
   
   
   const colors=useThemedColors();
   const [modalVisible, setModalVisible] = useState(false);
+  const [modal3Visible, setModal3Visible] = useState(false);
 
   const showAddModalandSendUser=()=>{
 
   dispatch(addUserRequest(userEmail))
     setModalVisible(true)
   }
+ 
  
   return(
 
@@ -100,12 +118,13 @@ const jobs=useSelector(jobsSelector);
          theme={{ colors: { underlineColor:'transparent',text:'white',placeholder:'white'}}}
          style={styles.searchbar}
          selectionColor={'white'}
-         />        
+         />    
+      <TouchableOpacity onPress={()=>showFilter()} style={styles.filtercontainer}><FilterButton/></TouchableOpacity>    
       </View>
   
 
       <View style={styles.blogcontainer}>
-
+        
          <AddJobModal modalVisible={modalVisible} setModalVisible={setModalVisible} />
          {jobs?
 

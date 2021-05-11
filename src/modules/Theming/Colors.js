@@ -74,7 +74,12 @@ export const colorNames = {
         jobinputbackground:'jobs/jobinputbackground'
     },
     searchbar:{
-        background:'searchbar/background'
+        background:'searchbar/background',
+        filterbackground:'searchbar/filterbackground'
+    },
+    drawer:{
+        background:'drawer/background',
+        itembackground:'drawer/itembackground'
     }
 };
 
@@ -100,6 +105,10 @@ export const darkColors = {
     [colorNames.jobs.jobinputbackground]: constantColors.black5,
 
     [colorNames.searchbar.background]: constantColors.black4,
+    [colorNames.searchbar.filterbackground]: constantColors.black4,
+
+    [colorNames.drawer.background]: constantColors.crema,
+    [colorNames.drawer.itembackground]: constantColors.cremamedium,
 
 
 
