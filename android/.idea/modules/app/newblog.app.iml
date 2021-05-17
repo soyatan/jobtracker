@@ -153,10 +153,12 @@
     <orderEntry type="module" module-name="newblog.react-native-firebase_auth" />
     <orderEntry type="module" module-name="newblog.react-native-firebase_app" />
     <orderEntry type="module" module-name="newblog.react-native-community_async-storage" />
+    <orderEntry type="module" module-name="newblog.react-native-community_datetimepicker" />
     <orderEntry type="module" module-name="newblog.react-native-community_masked-view" />
     <orderEntry type="module" module-name="newblog.react-native-gesture-handler" />
     <orderEntry type="module" module-name="newblog.react-native-safe-area-context" />
     <orderEntry type="module" module-name="newblog.react-native-screens" />
+    <orderEntry type="module" module-name="newblog.react-native-svg" />
     <orderEntry type="module" module-name="newblog.react-native-vector-icons" />
   </component>
 </module>
