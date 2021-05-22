@@ -25,11 +25,11 @@ export const getEmployees = () =>{
     }
 }
 
-export const addEmployees = (email) =>{
+export const addEmployees = (email,uid) =>{
     return{
         type: ADD_EMPLOYEES,
         payload:{
-            email
+            email,uid
         }
       
     }
@@ -47,7 +47,9 @@ export const employeesReducer =(state=INITIAL_STATE,action)=>{
     switch(action.type){
         case SET_EMPLOYEES:
             const newState=action.payload.users
-            return newState          
+            return newState    
+        case ADD_EMPLOYEES:
+            return [...state,{id:action.payload.uid,email:action.payload.email}]     
       
             
             

@@ -1,10 +1,10 @@
 import { all } from 'redux-saga/effects';
-import addCompanySaga from './addCompanySaga.js';
+
 import addEmployeesSaga from './addEmployeesSaga.js';
 import addJobSaga from './addJobSaga';
 import companiesSaga from './companiesSaga';
 import deleteJobSaga from './deleteJobSaga copy';
-import employeesSaga from './employeesSaga';
+
 import jobsSaga from './jobsSaga';
 import updateJobSaga from './updateJobSaga.js';
 
@@ -19,12 +19,12 @@ export default function* root() {
         // Oluşturduğumuz yeni saga dosyalarını (numberSagas gibi) buraya ekliyoruz
         ...userSaga,
         ...jobsSaga,
-        ...employeesSaga,
+        
         ...companiesSaga,
         ...addJobSaga,
         ...deleteJobSaga,
         ...addEmployeesSaga,
-        ...addCompanySaga,
+     
         ...updateJobSaga
         
     

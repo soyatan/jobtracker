@@ -24,7 +24,7 @@ export default AuthScreen=()=>{
   const[isSignIn,setSignIn]=useState(true);
 
   const[email,setEmail]=useState();
-  const[password,setPassword]=useState();
+  const[password,setPassword]=useState('');
   const[confirmPassword,setConfirmPassword]=useState();
   const dispatch = useDispatch()
 

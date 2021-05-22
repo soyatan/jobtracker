@@ -9,7 +9,7 @@ export const ADD_COMPANY_REQUEST='companies/add/request';
 export const FETCH_COMPANIES='companies/fetch';
 
 
-export const setComapnies = (companies) =>{
+export const setCompanies = (companies) =>{
     return{
         type: SET_COMPANIES,
         payload:{

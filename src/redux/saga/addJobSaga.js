@@ -9,117 +9,59 @@ import { employeeSelector } from '../employeesReducer';
 import { addCompanyRequest, companiesSelector, fetchCompaniesRequest } from '../companyReducer';
 import { fetchCompanies } from './companiesSaga';
 import { fetchJobs } from './jobsSaga';
-
+import database from '@react-native-firebase/database';
 const auth=createFBAuth();
 
-
-
-
 export function* addJob (action,companies){
-
-const job=action.job
-const companyname=action.companyname
-
     
-   
+    const job=action.job
+    const companyname=action.companyname
     const curcompany=companies.find(item=>item.name===companyname)
-    
-
-    
-    const newjob={...job,companyId:curcompany.id}
-    //console.log(newjob) 
-
-    
+    const appdateStr=job.appdate.toISOString();
+    const newjob={...job,companyId:curcompany.id,appdate:appdateStr}
     
     try{
-        yield call(fetch,baseURL+'/applications',{
-            method:'POST',
-            headers:{
-                'Accept': 'application/json',
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify(newjob)
-        })
-        
-        //yield put(addJobr(job))
-        //const data=yield response.json();
-        //yield put(setJobs(data))
-        //yield put(addJobr(newjob))
-        console.log('new job added',newjob)
+        const newRef= yield database().ref('/applications').push(newjob)
+            
+        const newMeetingRef= yield database().ref('/applications/'+newRef.key+'/meetings').set(action.meetings)
+        console.log(newjob,'has been added to jobs database')
         yield call(fetchJobs,)
-       
     } catch (error) {
         console.log(error)
       }
-      
     }
 
-export function* checkCompanyInCompList (payload){
-    
-    
+    export function* checkCompanyInCompList (payload){
     const companies=yield select(companiesSelector)
-    //console.log(company)
-    //console.log('current user is',curUser)
-    //console.log('current users are',curUsers)
-    
+    console.log('check company',payload)
     if (companies) {
         if (companies.some(item=>item.name===payload)){
             console.log('company exists in companies list')
         }
         else{
-            const newcompany={name:payload}
             try{
-                yield fetch(baseURL+'/companies',{
-                    method:'POST',
-                    headers:{
-                        'Accept': 'application/json',
-                        'Content-Type':'application/json'
-                    },
-                    body:JSON.stringify(newcompany)
-                })
-                
-                //yield put(addEmployees(curUser.email))
-                //const data=yield response.json();
-                //yield put(setJobs(data))
-                console.log(newcompany,'has been added')
+                const newRef= database().ref('/companies')
+                newRef.push(payload)
+                console.log(payload,'has been added to companies database')
             } catch (error) {
                 console.log(error)
                 }
-
             }}
        yield call(fetchCompanies,)
-    
     }
             
-    
-export function* jobgeldifirmaekle ({payload}){
-    
-    //    yield put(addCompanyRequest(payload.companyname))
+export function* addCompanyByNewJob ({payload}){
     yield call(checkCompanyInCompList,payload.companyname)
     const companies=yield select(companiesSelector)
     yield call(addJob,payload,companies)
 }
 
-
-
 export function* watchAddJobRequest () {
-    yield takeLatest(ADD_JOB_REQUEST,jobgeldifirmaekle);
-   
-    
-   
-
-    //yield call(addJob,payload.job,payload.companyname);
-
-  
-
+    yield takeLatest(ADD_JOB_REQUEST,addCompanyByNewJob);
 }
-
-
-
 
 const addJobSaga=[
     fork(watchAddJobRequest),
-
 ];
 
 export default addJobSaga;

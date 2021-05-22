@@ -4,7 +4,7 @@ import firebase from '@react-native-firebase/app';
 import createFBAuth from "@react-native-firebase/auth";
 import { jobsReducer,fetchJobsRequest, FETCH_JOBS, setJobs, ADD_JOB, ADD_JOB_REQUEST, addJobr, DELETE_JOB_REQUEST, deleteJob } from '../jobsReducer';
 import { baseURL } from '../../API/jobsURL';
-
+import database from '@react-native-firebase/database';
 const auth=createFBAuth();
 
 
@@ -12,42 +12,20 @@ const auth=createFBAuth();
 
 export function* delJob ({payload}){
     
-    
-    
-    
     try{
-        console.log('we are passing a delete for the item id',payload.id)
-        const response=yield call(fetch,baseURL+'/applications'+'/'+payload.id,{
-            method:'DELETE'
-        })
-        console.log('response',response)
-        
-        //yield put(addJobr(job))
-        //const data=yield response.json();
-        //yield put(setJobs(data))
+        console.log('passing a delete for the item id',payload.id)
+        yield database().ref('/applications/'+payload.id).remove()
         yield put(deleteJob(payload.id))
-        console.log('deleted job',payload.id)
     } catch (error) {
         console.log(error)
       }
-      
-     
 }
-
-
 export function* watchDeleteJobRequest () {
-    yield takeEvery(DELETE_JOB_REQUEST,delJob);
-    //yield call(delJob,payload)
-    
-
+    yield takeLatest(DELETE_JOB_REQUEST,delJob);
 }
-
-
-
 
 const deleteJobSaga=[
     fork(watchDeleteJobRequest),
-
 ];
 
 export default deleteJobSaga;

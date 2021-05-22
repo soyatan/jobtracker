@@ -36,25 +36,11 @@ import FilterButton from '../../components/FilterButton/FilterButton';
 import FilterModal from '../../components/FilterModal/FilterModal';
 import {useNavigation} from '@react-navigation/native';
 import {filteredJobsSelector} from '../../redux/filteredJobsReducer';
-import {baseURL} from '../../API/jobsURL';
-
-import database from '@react-native-firebase/database';
-import {companiesSelector} from '../../redux/companyReducer';
 
 export default JobsIndex = ({route})=>{
-  // document reference inside a collection
-  const curuser = useSelector(userSelector);
-  const users = useSelector(employeeSelector);
-  const companies = useSelector(companiesSelector);
-
-  useEffect(() => {
-    dispatch(fetchJobsRequest());
-  }, []);
 
   const [searchQuery, setSearchQuery] = useState();
   const [data, setData] = useState(jobs);
-
-  
 
   const onChangeSearch = (value)=>{
     setSearchQuery(value);
@@ -72,34 +58,36 @@ export default JobsIndex = ({route})=>{
       setData(newList);
     } else {
       setData(jobs);
-      
 
 
     }
   };
 
 
+
   const clearSearch = ()=>{
     alert(searchQuery);
   };
 
+  const curuser = useSelector(userSelector);
 
   const jobs = useSelector(jobsSelector);
-
-  
   const filterStatus = useSelector(filteredJobsSelector);
 
   const dispatch = useDispatch();
-  
+  const userEmail = curuser.email;
 
   const styles = useThemedStyles(getstyles);
+  useEffect(() => {
+    dispatch(fetchJobsRequest());
+  }, []);
 
   useEffect(() => {
     setData(jobs);
   }, [jobs]);
 
   useEffect(() => {
-    if (filterStatus === 'FILTERED'){
+    if (filterStatus === 'FILTERED')
       setData(jobs);
     } else if (filterStatus === 'NO FILTER') {
       dispatch(fetchJobsRequest());
@@ -108,16 +96,17 @@ export default JobsIndex = ({route})=>{
 
   const navigation = useNavigation();
 
-  const showFilter = () => {
+
+const showFilter = () => {
     navigation.toggleDrawer();
-  };
+
 
   const colors = useThemedColors();
   const [modalVisible, setModalVisible] = useState(false);
   const [modal3Visible, setModal3Visible] = useState(false);
 
   const showAddModalandSendUser = ()=>{
-    dispatch(addUserRequest(curuser.email));
+    dispatch(addUserRequest(userEmail));
     setModalVisible(true);
   };
 
@@ -152,22 +141,20 @@ export default JobsIndex = ({route})=>{
 
       <View style={styles.blogcontainer}>
 
-
          <AddJobModal modalVisible={modalVisible} setModalVisible={setModalVisible} />
-        {jobs ? 
+        {jobs ? (
           <FlatList
-          
             keyExtractor={(item, index) => index}
             showsVerticalScrollIndicator={false}
             data={data}
             renderItem={item => <JobPost data={item} />}
           />
-         : 
+        ) : (
           <ActivityIndicator
             size="large"
             color={colors[colorNames.header.inputText]}
           />
-        }
+        )}
       </View>
 
       <View style={styles.addnewjobcontainer}>
@@ -178,7 +165,6 @@ export default JobsIndex = ({route})=>{
           color={colors[colorNames.header.inputText]}
         />
 
-    </View>
     </View>
   );
 };

@@ -10,7 +10,7 @@ import getstyles from './styles';
 
 
 export const WebLink = ({ url, children }) => {
-  console.log('url',url)
+  
   const styles=useThemedStyles(getstyles);
     const handlePress = useCallback(async () => {
       // Checking if the link is supported for links with custom URL scheme.
@@ -42,7 +42,7 @@ export const MailLink = ({ url, children }) => {
 };
 
 export const MapLink = ({ url, children }) => {
-  console.log('url',url)
+ 
   const urltogo='https://www.google.com/maps/place/'+url
   const styles=useThemedStyles(getstyles);
     const handlePress = useCallback(async () => {

@@ -1,4 +1,4 @@
-const INITIAL_STATE = null;
+const INITIAL_STATE = [];
 
 //selector
 export const jobsSelector=state=>state.jobsState;
@@ -21,21 +21,21 @@ export const setJobs = (jobs) =>{
     }
 }
 
-export const addJobRequest = (job,companyname) =>{
+export const addJobRequest = (job,companyname,meetings) =>{
     return{
         type: ADD_JOB_REQUEST,
         payload:{
-            job,companyname
+            job,companyname,meetings
         }
     }
 }
 
-export const updateJobRequest = (job,companyname,id) =>{
+export const updateJobRequest = (job,companyname,id,meetings) =>{
     
     return{
         type: UPDATE_JOB_REQUEST,
         payload:{
-            job,companyname,id
+            job,companyname,id,meetings
         }
     }
 }

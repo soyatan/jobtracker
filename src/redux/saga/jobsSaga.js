@@ -4,28 +4,40 @@ import firebase from '@react-native-firebase/app';
 import createFBAuth from "@react-native-firebase/auth";
 import { jobsReducer,fetchJobsRequest, FETCH_JOBS, setJobs } from '../jobsReducer';
 import { baseURL } from '../../API/jobsURL';
+import database from '@react-native-firebase/database';
+import { fetchEmployeesRequest } from '../employeesReducer';
+import { fetchUsersFromDb } from './addEmployeesSaga';
 
 const auth=createFBAuth();
 
-
-
 export function* fetchJobs (){
-    console.log('fetch01')
-    
-    
+    console.log('fetching Jos Applications from database')
     try{
-        const response=yield call(fetch,baseURL+'/applications')
-        console.log('fetch02')
-        const data=yield apply(response,response.json);
-        console.log('fetch03')
-        //console.log('succesfully fetched jobs')
-        yield put(setJobs(data))
-        console.log('fetchjobs completed and set them into redux.')
-        //console.log('succesfully placed jobs in redux')
-    } catch (error) {
+    let jobs = [];
+    yield database().ref('/applications').once('value', 
+        function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            var childKey=childSnapshot.key;
+            var application={}
+            var childData=childSnapshot.val();
+            application={...childData,id:childKey}
+            jobs.push(application);
+            
+           
+        })})
+        
+        console.log('succesfully fetched '+jobs.length+ ' jobs');
+        yield call(fetchUsersFromDb,)
+        yield put(setJobs(jobs))
+    }catch(error) {
         console.log(error)
       }
-}
+
+    }
+
+
+  
+
 
 
 export function* watchFetchJobsRequest () {

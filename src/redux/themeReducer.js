@@ -1,4 +1,4 @@
-import { ThemeModes } from "../modules/Theming";
+import { ThemeModes } from "../modules/Theming/ThemingConstants";
 
 
 

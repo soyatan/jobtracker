@@ -22,15 +22,16 @@ export default JobsMain=()=>{
       drawerPosition={'right'}
       drawerStyle={styles.drawer}
       drawerContent={()=><FilterModal/>}
-      screenOptions={{  headerShown:false, }}
+      screenOptions={{  headerShown:false }}
     >
-          
+         
         <Jobs.Screen name="Jobs Index"  component={JobsIndex}  />
         
         
         <Jobs.Screen 
         name="Job Details"  
         component={JobDetails}
+        options={{unmountOnBlur:true}}
         />
          
 
