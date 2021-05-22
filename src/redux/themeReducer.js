@@ -5,7 +5,7 @@ import { ThemeModes } from "../modules/Theming/ThemingConstants";
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = {
-    themeMode: ThemeModes.light,
+    themeMode: ThemeModes.dark,
 };
 
 /* ------------- Types and Action Creators ------------- */
