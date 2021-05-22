@@ -7,10 +7,12 @@ import MainScreen from './src/screens/Main/MainScreen'
 import { StatusBar } from 'react-native';
 import { PersistGate } from 'redux-persist/integration/react';
 
+
 const { store, persistor } = storey();
 
 export default App=()=>{
-  
+ 
+
   return(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

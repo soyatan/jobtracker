@@ -151,6 +151,7 @@
     <orderEntry type="library" name="Gradle: org.webkit:android-jsc:r245459@aar" level="project" />
     <orderEntry type="library" name="Gradle: artifacts:react-native-reanimated:unspecified" level="project" />
     <orderEntry type="module" module-name="newblog.react-native-firebase_auth" />
+    <orderEntry type="module" module-name="newblog.react-native-firebase_database" />
     <orderEntry type="module" module-name="newblog.react-native-firebase_app" />
     <orderEntry type="module" module-name="newblog.react-native-community_async-storage" />
     <orderEntry type="module" module-name="newblog.react-native-community_datetimepicker" />
