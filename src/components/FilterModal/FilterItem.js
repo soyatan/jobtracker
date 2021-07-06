@@ -1,17 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-
-} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {ActivityIndicator, TextInput} from 'react-native-paper';
 import getstyles from './styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {
-  
-  useThemedStyles,
-} from '../../modules/Theming';
+import {useThemedStyles} from '../../modules/Theming';
 
 import {useDispatch} from 'react-redux';
 import {addJobRequest} from '../../redux/jobsReducer';
@@ -20,7 +12,7 @@ import Tick from '../icons/tick.svg';
 
 export default FilterItem = ({
   item,
- 
+
   mainFilter,
   setMainFilter,
   activeFilter,
@@ -63,12 +55,12 @@ export default FilterItem = ({
       onPress={() => toggleChoice()}
       style={styles.filtermodalbody}>
       <Text style={styles.header}>{item}</Text>
-      {isSelected ? 
+      {isSelected ? (
         <Tick
           width={styles.icondimensions.width}
           height={styles.icondimensions.height}
         />
-       : null}
+      ) : null}
     </TouchableOpacity>
   );
 };

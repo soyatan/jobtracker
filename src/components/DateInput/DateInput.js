@@ -12,7 +12,7 @@ export default DateInput = ({title, text, state}) => {
   const [date, setDate] = useState(new Date(text));
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
- 
+
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');

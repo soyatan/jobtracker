@@ -30,18 +30,15 @@ export default FilterSubText = ({
     state(data);
     activeState(dbKey);
     isChoosing(true);
-  }
-
-    return (
-      <TouchableOpacity
-        onPress={() => _onPress()}
-        style={styles.filtermodalbody}>
-        <Text style={styles.header}>{title}</Text>
-        <Right
-          width={styles.icondimensions.width}
-          height={styles.icondimensions.height}
-        />
-      </TouchableOpacity>
-    );
   };
 
+  return (
+    <TouchableOpacity onPress={() => _onPress()} style={styles.filtermodalbody}>
+      <Text style={styles.header}>{title}</Text>
+      <Right
+        width={styles.icondimensions.width}
+        height={styles.icondimensions.height}
+      />
+    </TouchableOpacity>
+  );
+};

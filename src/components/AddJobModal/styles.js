@@ -3,8 +3,8 @@ import {StyleSheet} from 'react-native';
 
 import {colorNames as cn, useThemedColors} from '../../modules/Theming';
 
-export default styles = (Colors)=>StyleSheet.create({
-
+export default styles = Colors =>
+  StyleSheet.create({
     centeredView: {
       marginTop: h * 0.08,
       marginRight: h * 0.012,
@@ -36,8 +36,7 @@ export default styles = (Colors)=>StyleSheet.create({
       alignContent: 'flex-end',
       alignSelf: 'flex-end',
       marginTop: h * 0.01,
-
-     },
+    },
     modalbutton: {
       backgroundColor: Colors[cn.jobs.modalbuttonbackground],
       alignSelf: 'stretch',
@@ -62,9 +61,7 @@ export default styles = (Colors)=>StyleSheet.create({
       textAlignVertical: 'center',
     },
     jobtext: {
-
-
-        color:Colors[cn.jobs.jobtextcolor2],
+      color: Colors[cn.jobs.jobtextcolor2],
       fontSize: 14,
     },
     jobtitletext: {
@@ -72,6 +69,5 @@ export default styles = (Colors)=>StyleSheet.create({
       fontWeight: 'bold',
       fontSize: 16,
       color: Colors[cn.jobs.jobtextcolor],
-
-  }
-})
+    },
+  });

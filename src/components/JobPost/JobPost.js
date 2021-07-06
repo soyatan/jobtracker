@@ -18,7 +18,6 @@ import {useDispatch} from 'react-redux';
 import moment from 'moment';
 
 export default JobPost = ({data}) => {
-  
   const styles = useThemedStyles(getstyles);
 
   const navigation = useNavigation();
@@ -33,7 +32,7 @@ export default JobPost = ({data}) => {
   const currentCompany = companies.find(
     item => item.id === data.item.companyId,
   );
-  
+
   const colors = useThemedColors();
   const changeDeleteButton = () => {
     if (isDelete) {
@@ -70,40 +69,40 @@ export default JobPost = ({data}) => {
             jobId: data.item.id,
             companyname: currentCompany,
             currentUser: currentUser,
-            data:data.item
+            data: data.item,
           })
         }
         onLongPress={() => changeDeleteButton()}>
-        {!currentCompany ? 
+        {!currentCompany ? (
           <ActivityIndicator
             size="small"
             color={colors[colorNames.header.inputText]}
           />
-         : 
+        ) : (
           <Text style={styles.blogtitletext} numberOfLines={1}>
             {currentCompany.name}
           </Text>
-        }
+        )}
         <Text style={styles.blogtitletext}>{data.item.title}</Text>
 
-        {currentUser && data.item ? 
+        {currentUser && data.item ? (
           <Text style={styles.jobtext}>
             {currentUser.username} on {formdate(data.item.appdate)}
           </Text>
-         : 
+        ) : (
           <ActivityIndicator
             size="small"
             color={colors[colorNames.header.inputText]}
           />
-        }
+        )}
       </TouchableOpacity>
-      {isDelete && data.item ? 
+      {isDelete && data.item ? (
         <TouchableOpacity
           style={styles.blogleft}
           onPress={() => deleteJobRequestr(data.item.id)}>
           <FontAwesome name="trash" size={24} style={styles.portraiticon} />
         </TouchableOpacity>
-      : null}
+      ) : null}
     </View>
   );
 };

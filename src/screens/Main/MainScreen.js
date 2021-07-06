@@ -27,9 +27,8 @@ import HeaderRightMake from '../../components/HeaderRight/HeaderRight';
 
 const Main = createStackNavigator();
 
-const MainScreen = ()=>{
+const MainScreen = () => {
   const loc = useLocalization();
-
 
   const theme = useTheme();
 
@@ -43,17 +42,20 @@ const MainScreen = ()=>{
   const [initializing, setInitializing] = useState(true);
 
   function onAuthStateChanged(user) {
-    if (initializing) {setInitializing(false);}
+    if (initializing) {
+      setInitializing(false);
+    }
   }
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
 
-
     return subscriber; // unsubscribe on unmount
   }, []);
 
-  if (initializing) {return null;}
+  if (initializing) {
+    return null;
+  }
 
   //console.log('maindeki user',user)
 
@@ -71,7 +73,6 @@ const MainScreen = ()=>{
                 backgroundColor: colors[colorNames.header.background],
                 borderBottomColor: colors[colorNames.header.inputBorder],
                 borderBottomWidth: 2,
-
               },
               headerTitleStyle: {
                 color: colors[colorNames.header.inputText],
@@ -79,9 +80,9 @@ const MainScreen = ()=>{
                 paddingRight: 15,
               },
               headerRight: () => HeaderRightMake(),
-            })}
-          >
-          <Main.Screen name="Auth"
+            })}>
+            <Main.Screen
+              name="Auth"
               component={AuthScreen}
               options={{headerTitle: loc.t(Texts.signinhead)}}
             />
@@ -109,13 +110,9 @@ const MainScreen = ()=>{
                 alignSelf: 'center',
                 paddingRight: 25,
                 fontSize: 18,
-
-
               },
               headerRight: () => HeaderRightMake(),
-            })}
-          >
-
+            })}>
             <Main.Screen
               name="JOB APPLICATIONS"
               component={JobsMain}
@@ -123,8 +120,8 @@ const MainScreen = ()=>{
                 headerShown: true,
                 headerTitle: loc.t(Texts.jobapplications),
                 headerLeft: () => HeaderLeftMake(),
-              })}/>
-
+              })}
+            />
           </Main.Navigator>
         </NavigationContainer>
       </>

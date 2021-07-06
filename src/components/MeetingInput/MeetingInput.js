@@ -17,19 +17,18 @@ export default MeetingInput = ({title, text}) => {
   return (
     <View style={styles.jobinputcontainer}>
       <Text style={styles.jobtitletext}>{title}</Text>
-      {isEditing ?
+      {isEditing ? (
         <TextInput
           style={styles.jobtext}
           value={value.toString()}
           onChangeText={value => setValue(value)}
           onBlur={() => setEditing(false)}
         />
-       : 
+      ) : (
         <Text style={styles.jobtext} onPress={() => setEditing(true)}>
           {value}
         </Text>
-      }
+      )}
     </View>
   );
 };
-

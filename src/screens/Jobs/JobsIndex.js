@@ -41,7 +41,7 @@ import {baseURL} from '../../API/jobsURL';
 import database from '@react-native-firebase/database';
 import {companiesSelector} from '../../redux/companyReducer';
 
-export default JobsIndex = ({route})=>{
+export default JobsIndex = ({route}) => {
   // document reference inside a collection
   const curuser = useSelector(userSelector);
   const users = useSelector(employeeSelector);
@@ -54,13 +54,13 @@ export default JobsIndex = ({route})=>{
   const [searchQuery, setSearchQuery] = useState();
   const [data, setData] = useState(jobs);
 
-  
-
-  const onChangeSearch = (value)=>{
+  const onChangeSearch = value => {
     setSearchQuery(value);
-    if (!value){setData(jobs);}
+    if (!value) {
+      setData(jobs);
+    }
   };
-  const submitSearch = ()=>{
+  const submitSearch = () => {
     if (searchQuery) {
       const newList = jobs.filter(item => {
         const ITEMTITLE = item.title
@@ -72,25 +72,18 @@ export default JobsIndex = ({route})=>{
       setData(newList);
     } else {
       setData(jobs);
-      
-
-
     }
   };
 
-
-  const clearSearch = ()=>{
+  const clearSearch = () => {
     alert(searchQuery);
   };
 
-
   const jobs = useSelector(jobsSelector);
 
-  
   const filterStatus = useSelector(filteredJobsSelector);
 
   const dispatch = useDispatch();
-  
 
   const styles = useThemedStyles(getstyles);
 
@@ -99,7 +92,7 @@ export default JobsIndex = ({route})=>{
   }, [jobs]);
 
   useEffect(() => {
-    if (filterStatus === 'FILTERED'){
+    if (filterStatus === 'FILTERED') {
       setData(jobs);
     } else if (filterStatus === 'NO FILTER') {
       dispatch(fetchJobsRequest());
@@ -116,15 +109,12 @@ export default JobsIndex = ({route})=>{
   const [modalVisible, setModalVisible] = useState(false);
   const [modal3Visible, setModal3Visible] = useState(false);
 
-  const showAddModalandSendUser = ()=>{
+  const showAddModalandSendUser = () => {
     dispatch(addUserRequest(curuser.email));
     setModalVisible(true);
   };
 
-
   return (
-
-
     <View style={styles.container}>
       <View style={styles.searchbarcontainer}>
         <Searchbar
@@ -149,25 +139,24 @@ export default JobsIndex = ({route})=>{
         </TouchableOpacity>
       </View>
 
-
       <View style={styles.blogcontainer}>
-
-
-         <AddJobModal modalVisible={modalVisible} setModalVisible={setModalVisible} />
-        {jobs ? 
+        <AddJobModal
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+        />
+        {jobs ? (
           <FlatList
-          
             keyExtractor={(item, index) => index}
             showsVerticalScrollIndicator={false}
             data={data}
             renderItem={item => <JobPost data={item} />}
           />
-         : 
+        ) : (
           <ActivityIndicator
             size="large"
             color={colors[colorNames.header.inputText]}
           />
-        }
+        )}
       </View>
 
       <View style={styles.addnewjobcontainer}>
@@ -177,8 +166,7 @@ export default JobsIndex = ({route})=>{
           name={'plus'}
           color={colors[colorNames.header.inputText]}
         />
-
-    </View>
+      </View>
     </View>
   );
 };

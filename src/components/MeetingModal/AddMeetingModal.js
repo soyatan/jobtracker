@@ -26,11 +26,7 @@ export default AddMeetingModal = ({
   text,
   state,
 }) => {
-  
- 
   const styles = useThemedStyles(getstyles);
-
-  
 
   const colors = useThemedColors();
   const [meetingDate, setMeetingDate] = useState(Date.now());
@@ -38,12 +34,12 @@ export default AddMeetingModal = ({
   const [meetingCounter, setMeetingCounter] = useState(0);
 
   useEffect(() => {
-    if(text){
-      if(!text.length<1){
-      setMeetingCounter(text.length)}
+    if (text) {
+      if (!text.length < 1) {
+        setMeetingCounter(text.length);
+      }
     }
-  
-  }, [])
+  }, []);
   const discardAndCloseModal = () => {
     setModalVisible(false);
   };
@@ -91,7 +87,6 @@ export default AddMeetingModal = ({
       <View style={styles.centeredView}>
         <FlatList
           inverted
-     
           extraData={text}
           data={text}
           keyExtractor={(item, index) => index}

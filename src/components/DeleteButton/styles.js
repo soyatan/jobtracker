@@ -1,8 +1,6 @@
 import {width as w, height as h} from '../../constants/Metrics';
 import {StyleSheet} from 'react-native';
 
-
-
 export default styles = Colors =>
   StyleSheet.create({
     text: {

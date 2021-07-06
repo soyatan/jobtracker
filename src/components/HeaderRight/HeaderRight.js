@@ -20,8 +20,7 @@ import Day from '../icons/sun.svg';
 import Night from '../icons/night.svg';
 import getstyles from './styles';
 import {width as w, height as h} from '../../constants/Metrics';
-export default HeaderRightMake = ()=>{
-
+export default HeaderRightMake = () => {
   const theme = useTheme();
   const changeLocale = key => {
     dispatch(LocalizationActions.changeLocale({locale: key}));
@@ -32,21 +31,21 @@ export default HeaderRightMake = ()=>{
   const styles = useThemedStyles(getstyles);
   const colors = useThemedColors();
 
-
   const loc = useLocalization();
   const currentLocale = loc.locale;
 
   useEffect(() => {}, []);
 
-  const logoutrequest = ()=>{
-    dispatch(userLogoutRequest());};
+  const logoutrequest = () => {
+    dispatch(userLogoutRequest());
+  };
 
   const dispatch = useDispatch();
 
   return (
     <>
       <View style={{alignItems: 'center', flexDirection: 'row'}}>
-        {currentLocale === 'en' ? 
+        {currentLocale === 'en' ? (
           <TouchableOpacity
             style={{
               alignItems: 'center',
@@ -59,25 +58,23 @@ export default HeaderRightMake = ()=>{
               width={styles.icondimensions.height}
             />
           </TouchableOpacity>
-
-    :
-
-      <TouchableOpacity
-        style={{alignItems:'center', marginLeft:w * 0.01,marginRight:w * 0.01}}
+        ) : (
+          <TouchableOpacity
+            style={{
+              alignItems: 'center',
+              marginLeft: w * 0.01,
+              marginRight: w * 0.01,
+            }}
             onPress={() => changeLocale('en')}>
+            <Turkey
+              height={styles.icondimensions.width}
+              width={styles.icondimensions.height}
+            />
+          </TouchableOpacity>
+        )}
 
-        <Turkey height={styles.icondimensions.width} width={styles.icondimensions.height}/>
-      </TouchableOpacity>
-        }
-
-
-
-
-
-      <View style={{alignItems:'center'}}>
-
-
-      {theme === ThemeModes.light ?
+        <View style={{alignItems: 'center'}}>
+          {theme === ThemeModes.light ? (
             <TouchableOpacity
               style={{marginLeft: w * 0.01, marginRight: w * 0.01}}
               onPress={() => {
@@ -88,7 +85,7 @@ export default HeaderRightMake = ()=>{
                 width={styles.icondimensions.height}
               />
             </TouchableOpacity>
-           : 
+          ) : (
             <TouchableOpacity
               style={{marginLeft: w * 0.01, marginRight: w * 0.01}}
               onPress={() => {
@@ -99,11 +96,11 @@ export default HeaderRightMake = ()=>{
                 width={styles.icondimensions.height}
               />
             </TouchableOpacity>
-          }
+          )}
         </View>
 
-
-        <View style={{
+        <View
+          style={{
             alignItems: 'center',
             marginLeft: w * 0.02,
             marginRight: w * 0.03,

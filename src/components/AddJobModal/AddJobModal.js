@@ -34,22 +34,22 @@ import {userSelector} from '../../redux/userReducer';
 import {useDispatch} from 'react-redux';
 import {addJobRequest} from '../../redux/jobsReducer';
 
-export default AddJobModal = ({modalVisible,setModalVisible,data})=>{
-
+export default AddJobModal = ({modalVisible, setModalVisible, data}) => {
   useEffect(() => {}, [modal2Visible, modalVisible]);
 
-  const [userId,setUserId] = useState('');
-  const [title,setTitle] = useState('');
-  const [content,setContent] = useState('');
-  const [location,setLocation] = useState('');
-  const [appdate,setAppdate] = useState(Date.now());
-  const [companyName,setCompanyName] = useState('');
-  const [URL,setURL] = useState('');
-  const [meetings,setMeetings] = useState([{id:1,meetingnotes:'very nice meeting',date:Date.now()}]);
-  const[isValidEntries,setIsValidEntries]=useState(false)
+  const [userId, setUserId] = useState('');
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [location, setLocation] = useState('');
+  const [appdate, setAppdate] = useState(Date.now());
+  const [companyName, setCompanyName] = useState('');
+  const [URL, setURL] = useState('');
+  const [meetings, setMeetings] = useState([
+    {id: 1, meetingnotes: 'very nice meeting', date: Date.now()},
+  ]);
+  const [isValidEntries, setIsValidEntries] = useState(false);
 
-
-const [modal2Visible,setModal2Visible] = useState(false);
+  const [modal2Visible, setModal2Visible] = useState(false);
 
   const styles = useThemedStyles(getstyles);
   const dispatch = useDispatch();
@@ -58,75 +58,68 @@ const [modal2Visible,setModal2Visible] = useState(false);
 
   const curuser = useSelector(userSelector);
 
-
   const userEmail = curuser.email;
 
   const users = useSelector(employeeSelector);
 
   const companies = useSelector(companiesSelector);
 
-
-
-useEffect(() => {
+  useEffect(() => {
     if (users && curuser) {
       try {
         let currentUser = users.find(item => item.username === curuser.email);
         if (currentUser) {
           setUserId(currentUser.id);
         }
-      }
-
-   catch (error) {
+      } catch (error) {
         console.log(error);
       }
+    }
+  }, [users]);
 
-}}, [users]);
+  useEffect(() => {
+    validateFields();
+  }, [title, content, location, appdate, companyName, URL]);
 
-useEffect(() => {
-  validateFields();
- }, [title,content,location,appdate,companyName,URL])
+  const validateFields = () => {
+    if (
+      (title.length > 2) &
+      (content.length > 3) &
+      (location.length > 2) &
+      (companyName.length > 2)
+    ) {
+      setIsValidEntries(true);
+      console.log('MALATSE');
+    } else {
+      console.log('PLEASE FILL ALL FIELDS');
+      setIsValidEntries(false);
+    }
+  };
 
- const validateFields= () =>{
-  if(title.length>2&content.length>3&location.length>2&companyName.length>2){
-    setIsValidEntries(true)
-    console.log('MALATSE')
-  }
-  else {
-    console.log('PLEASE FILL ALL FIELDS')
-    setIsValidEntries(false)
-  }
-}
-
-
-  const newJob = {title:title,content:content,userId:userId,location:location,appdate:appdate,URL:URL};
+  const newJob = {
+    title: title,
+    content: content,
+    userId: userId,
+    location: location,
+    appdate: appdate,
+    URL: URL,
+  };
   //console.log(newJob,'newjob to add')
 
-
-  const submitNewJob = ()=>{
-    if (isValidEntries){
-    dispatch(addJobRequest(newJob, companyName,meetings));
-    setModalVisible(false);
+  const submitNewJob = () => {
+    if (isValidEntries) {
+      dispatch(addJobRequest(newJob, companyName, meetings));
+      setModalVisible(false);
+    } else {
+      alert('please fill all the fields');
     }
-    else {
-      alert('please fill all the fields')
-    }
-
   };
 
   return (
-
-
-  <Modal
-    animationType="slide"
-    transparent={true}
-    visible={modalVisible}>
-
+    <Modal animationType="slide" transparent={true} visible={modalVisible}>
       <View style={styles.centeredView}>
-
-
-
-
-      <ScrollView style={styles.addjobcontainer}
+        <ScrollView
+          style={styles.addjobcontainer}
           showsVerticalScrollIndicator={false}>
           <JobInput
             title={'Applied As:'}
@@ -144,26 +137,30 @@ useEffect(() => {
           />
           <JobInput title={'Location:'} text={location} state={setLocation} />
 
-       <JobInput title={'Job Description:'} text={''} state={setContent}/>
+          <JobInput title={'Job Description:'} text={''} state={setContent} />
           <JobInput title={'URL:'} text={URL} state={setURL} />
 
+          <DateInput
+            title={'Application Date:'}
+            text={appdate}
+            state={setAppdate}
+          />
 
-
-       <DateInput title={'Application Date:'} text={appdate} state={setAppdate}/>
-
-
-
-
-        <TouchableOpacity style={styles.jobinputcontainer} onPress={()=>setModal2Visible(true)} >
+          <TouchableOpacity
+            style={styles.jobinputcontainer}
+            onPress={() => setModal2Visible(true)}>
             <Text style={styles.jobtitletext}>Add Interviews...</Text>
           </TouchableOpacity>
 
+          <AddMeetingModal
+            modalVisible={modal2Visible}
+            setModalVisible={setModal2Visible}
+            text={meetings}
+            state={setMeetings}
+          />
 
-       <AddMeetingModal modalVisible={modal2Visible} setModalVisible={setModal2Visible} text={meetings} state={setMeetings} />
-
-       <View style={styles.modalBottom}>
-
-          <Pressable
+          <View style={styles.modalBottom}>
+            <Pressable
               style={styles.modalbutton}
               onPress={() => submitNewJob()}>
               <Text style={styles.text}>Save</Text>
@@ -177,14 +174,6 @@ useEffect(() => {
           </View>
         </ScrollView>
       </View>
-
-
-  </Modal>
-
-
-
-
+    </Modal>
   );
 };
-
-

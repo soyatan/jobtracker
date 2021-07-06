@@ -1,10 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  
-} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 
 import getstyles from './styles';
 
@@ -25,7 +20,7 @@ import {userSelector} from '../../redux/userReducer';
 import {useNavigation} from '@react-navigation/native';
 import {setFilteredJobs} from '../../redux/filteredJobsReducer';
 
-export default FilterModal = ({route,modalVisible,setModalVisible})=>{
+export default FilterModal = ({route, modalVisible, setModalVisible}) => {
   const navigation = useNavigation();
 
   const styles = useThemedStyles(getstyles);
@@ -51,16 +46,14 @@ export default FilterModal = ({route,modalVisible,setModalVisible})=>{
 
   const createValueList = dbKey => {
     if (jobs && data) {
-
-  const filterValues = data.map(item=>{
+      const filterValues = data.map(item => {
         return item[dbKey].toUpperCase();
       });
       return _.sortedUniq(filterValues);
     }
   };
 
-
-const goBack = () => {
+  const goBack = () => {
     setChoosing(false);
   };
 
@@ -72,7 +65,9 @@ const goBack = () => {
 
   const _onPressSubmitFilter = () => {
     const SEARCHTITLES = mainFilter[0]['title'].map(item => item.toUpperCase());
-    const SEARCHLOCATIONS = mainFilter[0]['location'].map(item =>item.toUpperCase())
+    const SEARCHLOCATIONS = mainFilter[0]['location'].map(item =>
+      item.toUpperCase(),
+    );
 
     const newList = jobs.filter(item => {
       const ITEMTITLE = item.title
@@ -82,16 +77,17 @@ const goBack = () => {
         ? item.location.toUpperCase()
         : ''.toUpperCase();
 
-
-  if (SEARCHTITLES.some(item=>item === ITEMTITLE) || (SEARCHLOCATIONS.some(item=>item === ITEMLOCATION))){
+      if (
+        SEARCHTITLES.some(item => item === ITEMTITLE) ||
+        SEARCHLOCATIONS.some(item => item === ITEMLOCATION)
+      ) {
         return item;
-      }})
-
+      }
+    });
 
     dispatch(setJobs(newList));
 
-
-  dispatch(setFilteredJobs('FILTERED'));
+    dispatch(setFilteredJobs('FILTERED'));
     navigation.navigate('Jobs Index');
   };
 
@@ -101,14 +97,11 @@ const goBack = () => {
     navigation.navigate('Jobs Index');
   };
 
-  return (
-
- jobs ?
+  return jobs ? (
     <View style={styles.centeredView}>
-
-        <View style={styles.headercontainer}>
-        {!isChoosing ?
-        <>
+      <View style={styles.headercontainer}>
+        {!isChoosing ? (
+          <>
             <TouchableOpacity>
               <Text style={styles.header}>SELECT FILTERS</Text>
             </TouchableOpacity>
@@ -118,7 +111,7 @@ const goBack = () => {
               <Text style={styles.header}>CLEAR FILTERS</Text>
             </TouchableOpacity>
           </>
-         : 
+        ) : (
           <>
             <TouchableOpacity onPress={() => goBack()}>
               <Left
@@ -132,11 +125,11 @@ const goBack = () => {
               <Text style={styles.header}>CLEAR FILTERS</Text>
             </TouchableOpacity>
           </>
-        }
+        )}
       </View>
 
       <View style={styles.filteritemcontainer}>
-        {!isChoosing ?
+        {!isChoosing ? (
           <>
             <FilterSubText
               dbKey={'title'}
@@ -152,9 +145,18 @@ const goBack = () => {
               isChoosing={setChoosing}
               activeState={setActiveFilter}
               state={setFilterValues}
-              title={'LOCATION'}/>
-          </> : <FilterSubChoices activeFilter={activeFilter} mainFilter={mainFilter} filterValues={filterValues} setMainFilter={setMainFilter} setActiveFilter={setActiveFilter} />}
-
+              title={'LOCATION'}
+            />
+          </>
+        ) : (
+          <FilterSubChoices
+            activeFilter={activeFilter}
+            mainFilter={mainFilter}
+            filterValues={filterValues}
+            setMainFilter={setMainFilter}
+            setActiveFilter={setActiveFilter}
+          />
+        )}
       </View>
 
       <View style={styles.filterfootercontainer}>
@@ -162,11 +164,8 @@ const goBack = () => {
           FILTER JOB APPLICATIONS
         </Text>
       </View>
-
-      </View>
-      
-      : <View></View>
-  )
-}  
-
-
+    </View>
+  ) : (
+    <View></View>
+  );
+};
